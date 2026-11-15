@@ -35,7 +35,6 @@ export const rootMetadata = {
     title: 'Amlan Kumar Bhowmik',
     description:
       'A design-driven software developer building elegant, maintainable digital experiences.',
-    creator: '@coreamlan-stack',
   },
   robots: { index: true, follow: true },
 };
