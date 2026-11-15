@@ -7,6 +7,7 @@ import { ParallaxSlider } from '@/components';
 
 import { slideUp } from './variants';
 import AeroShards from '../../_components/aero-shards';
+import TechText from '../../_components/tech-text';
 
 export function Header() {
   return (
@@ -53,8 +54,29 @@ export function Header() {
         aria-hidden='true'
         className='absolute right-[-10vw] top-[13vh] h-[32vw] w-[32vw] rounded-full border border-primary/60 shadow-[0_0_120px_rgba(200,255,92,0.14)]'
       />
-      <div className='relative flex h-full flex-col justify-end gap-2 md:flex-col-reverse md:justify-normal'>
-        <div className='select-none'>
+      <div className='relative h-full'>
+        <div className='absolute inset-x-0 top-[53%] h-[clamp(9rem,25vw,22rem)] -translate-y-1/2'>
+          <h1 className='h-full' aria-label='Amlan Kumar Bhowmik'>
+            <TechText
+              text='Amlan Kumar Bhowmik'
+              fontWeight={600}
+              fontSize={150}
+              letterSpacing={-0.05}
+              reveal='letter'
+              dashLength={4}
+              dashGap={2}
+              strokeWidth={1.5}
+              reach={200}
+              softness={0.7}
+              bounce={0.4}
+              speed={1}
+              draggable={false}
+              color='currentColor'
+              accentColor='currentColor'
+            />
+          </h1>
+        </div>
+        {false && (
           <h1 className='text-[clamp(4rem,9vw,10rem)] leading-[0.9]'>
             <ParallaxSlider repeat={4} baseVelocity={2}>
               <span className='pe-12'>
@@ -62,13 +84,13 @@ export function Header() {
               </span>
             </ParallaxSlider>
           </h1>
-        </div>
-        <div className='md:ml-auto'>
-          <div className='mx-10 max-md:my-12 md:mx-36'>
-            <div className='mb-4 md:mb-20'>
+        )}
+        <div className='absolute right-8 top-[55%] md:right-36 md:top-[62%]'>
+          <div>
+            <div className='mb-4 md:mb-12'>
               <MoveDownRight size={28} strokeWidth={1.25} />
             </div>
-            <h4 className='text-[clamp(1.35em,2.5vw,2.75em)]'>
+            <h4 className='text-[clamp(1.35rem,2.5vw,2.75rem)] leading-tight'>
               <span className='block'>Software Developer</span>
               <span className='block text-primary'>&amp; UI/UX Designer</span>
             </h4>
