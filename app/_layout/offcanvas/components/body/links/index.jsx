@@ -11,7 +11,7 @@ import { navItems } from '@/data';
 
 import { scale, slideOut } from './variants';
 
-export function OffcanvasLinks() {
+export function OffcanvasLinks({ onClose }) {
   const pathname = usePathname();
   const [activeLink, setActiveLink] = useState(pathname);
 
@@ -35,7 +35,7 @@ export function OffcanvasLinks() {
         >
           <Dot size={36} />
         </motion.div>
-        <Link href={href} className='text-6xl capitalize'>
+        <Link href={href} onClick={onClose} className='text-4xl capitalize sm:text-5xl lg:text-6xl'>
           {title}
         </Link>
       </motion.li>
@@ -43,7 +43,7 @@ export function OffcanvasLinks() {
   });
 
   return (
-    <div className='mt-20 flex flex-col gap-3'>
+    <div className='mt-4 flex flex-col gap-3 sm:mt-20'>
       <div className='mb-10 border-b border-solid'>
         <h5 className='text-xs uppercase text-secondary-foreground'>
           Navigation
