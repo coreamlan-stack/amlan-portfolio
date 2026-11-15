@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { PageReveal } from '@/app/_components/page-reveal';
+import { PageShell } from '@/app/_components/page-shell';
 import { SubpageNav } from '@/app/_components/subpage-nav';
 import { caseStudies, getCaseStudy } from '@/data';
 
@@ -23,6 +24,7 @@ export default function CaseStudyPage({ params }) {
   const next = caseStudies[(currentIndex + 1) % caseStudies.length];
 
   return (
+    <PageShell>
     <main className='relative min-h-screen bg-background text-foreground'>
       <SubpageNav />
       <article>
@@ -63,5 +65,6 @@ export default function CaseStudyPage({ params }) {
         <div className='mt-6 flex items-center justify-between gap-4'><h2 className='text-[clamp(2.5rem,7vw,7rem)] tracking-[-0.06em]'>{next.title}</h2><ArrowUpRight className='text-primary transition-transform group-hover:-translate-y-2 group-hover:translate-x-2' size={34}/></div>
       </Link>
     </main>
+    </PageShell>
   );
 }
