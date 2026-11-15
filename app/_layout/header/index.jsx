@@ -6,6 +6,7 @@ import { MoveDownRight } from 'lucide-react';
 import { ParallaxSlider } from '@/components';
 
 import { slideUp } from './variants';
+import AeroShards from '../../_components/aero-shards';
 
 export function Header() {
   return (
@@ -15,9 +16,38 @@ export function Header() {
       initial='initial'
       animate='enter'
     >
+      <div aria-hidden='true' className='absolute inset-0 opacity-75'>
+        <AeroShards
+          shardColor='#d8ff67'
+          accentColor='#a3ff12'
+          placement='full'
+          material='glass'
+          markers='plus'
+          count={900}
+          depthOfField={0.75}
+          vignette={0.3}
+          mouseInteraction
+          pulseOnClick
+          holdToGather
+          lightMode={false}
+          shardSize={1}
+          spread={1}
+          twist={1}
+          billow={1}
+          speed={1}
+          scale={1}
+          glow={0.35}
+          grain={0.06}
+          intro
+          mouseStrength={0.6}
+          parallax={0.5}
+          paused={false}
+          dpr={1.5}
+        />
+      </div>
       <div
         aria-hidden='true'
-        className='hero-grid absolute inset-0 opacity-80'
+        className='hero-grid absolute inset-0 opacity-70'
       />
       <div
         aria-hidden='true'
@@ -25,7 +55,7 @@ export function Header() {
       />
       <div className='relative flex h-full flex-col justify-end gap-2 md:flex-col-reverse md:justify-normal'>
         <div className='select-none'>
-          <h1 className='text-[max(5.25em,13vw)] leading-[0.86] sm:text-[max(7em,14vw)]'>
+          <h1 className='text-[clamp(4rem,9vw,10rem)] leading-[0.9]'>
             <ParallaxSlider repeat={4} baseVelocity={2}>
               <span className='pe-12'>
                 Amlan Kumar Bhowmik <span className='spacer'>—</span>

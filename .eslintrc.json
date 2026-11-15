@@ -47,6 +47,16 @@
     "import/export": 2,
     "tailwindcss/no-custom-classname": "off"
   },
+  "overrides": [
+    {
+      "files": ["app/_components/aero-shards/index.jsx"],
+      "rules": {
+        "import/default": "off",
+        "import/named": "off",
+        "import/namespace": "off"
+      }
+    }
+  ],
   "settings": {
     "import/extensions": [".js", ".jsx"],
     "import/resolver": {
