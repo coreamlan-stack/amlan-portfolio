@@ -4,14 +4,14 @@ import { Center } from '@/components';
 export function ProjectSlider({ label, tone }) {
   return (
     <Center
-      className={`relative w-1/4 overflow-hidden rounded ${tone}`}
-      style={{ minWidth: '150px', height: '20vw' }}
+      className={`relative w-1/4 overflow-hidden rounded-2xl border border-white/10 ${tone}`}
+      style={{ minWidth: 'min(42vw, 220px)', height: 'clamp(112px, 20vw, 280px)' }}
     >
       <div
         aria-hidden='true'
-        className='absolute inset-4 border border-white/35'
+        className='absolute inset-4 rounded-xl border border-white/20'
       />
-      <span className='relative max-w-[10ch] text-center text-sm uppercase tracking-[0.15em] text-white mix-blend-difference'>
+      <span className='relative max-w-[11ch] px-3 text-center text-[clamp(.85rem,1.45vw,1.3rem)] font-medium tracking-tight text-white mix-blend-difference'>
         {label}
       </span>
     </Center>
