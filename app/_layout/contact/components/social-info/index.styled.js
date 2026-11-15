@@ -3,9 +3,10 @@
 import { styled } from 'styled-components';
 
 export const ListTitle = styled.h5`
-  color: ${({ theme }) => theme?.colors?.muted?.foreground};
+  color: ${({ theme }) => theme?.colors?.primary?.DEFAULT};
   font-size: 0.75rem;
   line-height: 1rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-block-end: 1rem;
 `;

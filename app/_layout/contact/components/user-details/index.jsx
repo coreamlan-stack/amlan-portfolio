@@ -12,7 +12,7 @@ export function UserDetails({ transformX }) {
   return (
     <Container>
       <Row>
-        <div className='flex items-center gap-8'>
+        <div className='flex items-center gap-4 sm:gap-8'>
           <ImageWrapper>
             <span className='flex size-full items-center justify-center rounded-full bg-primary text-xl text-primary-foreground'>
               AK
@@ -20,14 +20,19 @@ export function UserDetails({ transformX }) {
           </ImageWrapper>
           <MainTitle>Let’s build</MainTitle>
         </div>
-        <div className='flex items-center justify-between'>
+        <div className='mt-3 flex items-center justify-between gap-6'>
           <MainTitle>with intent</MainTitle>
-          <ArrowDownLeft size={28} strokeWidth={1.25} />
+          <ArrowDownLeft
+            className='shrink-0 text-primary'
+            size={28}
+            strokeWidth={1.25}
+            aria-hidden='true'
+          />
         </div>
       </Row>
       <Row>
         <div className='relative w-full'>
-          <div className='h-px bg-muted-foreground' />
+          <div className='h-px bg-[#f5f3eb]/25' />
           <div className='absolute right-0 top-0 z-20 -translate-x-1/2 -translate-y-1/2'>
             <motion.div style={{ x: transformX }}>
               <Link href='/contact'>
@@ -49,16 +54,16 @@ export function UserDetails({ transformX }) {
             <MagneticButton
               variant='outline'
               size='md'
-              className='w-full border-muted-foreground'
+              className='w-full border-[#f5f3eb]/35 hover:border-primary'
             >
-              github.com/coreamlan-stack
+              View GitHub
             </MagneticButton>
           </a>
           <Link href='/contact'>
             <MagneticButton
               variant='outline'
               size='md'
-              className='w-full border-muted-foreground'
+              className='w-full border-[#f5f3eb]/35 hover:border-primary'
             >
               Contact details
             </MagneticButton>

@@ -24,16 +24,16 @@ export function SocialInfo() {
   });
 
   return (
-    <div className='px-12 pb-4 pt-10'>
-      <div className='flex flex-wrap items-stretch justify-between gap-5'>
-        <div className='flex gap-8'>
+    <div className='mx-auto w-full max-w-[1400px] px-6 pt-4 sm:px-[clamp(1.5rem,6vw,7rem)]'>
+      <div className='flex flex-wrap items-stretch justify-between gap-10 border-t border-[#f5f3eb]/15 pt-8'>
+        <div className='flex flex-wrap gap-x-10 gap-y-6'>
           <div>
             <ListTitle>Version</ListTitle>
             <p className='mt-7'>2026 © Portfolio</p>
           </div>
           <div>
             <ListTitle>Local time</ListTitle>
-            <p className='mt-7'>
+            <p className='mt-3 text-sm text-[#f5f3eb]/80'>
               <time>India · GMT+5:30</time>
             </p>
           </div>
@@ -41,7 +41,7 @@ export function SocialInfo() {
 
         <div className='flex flex-col'>
           <ListTitle>Socials</ListTitle>
-          <ul className='flex gap-8'>{medias}</ul>
+          <ul className='flex gap-5'>{medias}</ul>
         </div>
       </div>
     </div>

@@ -2,19 +2,14 @@
 
 import { styled } from 'styled-components';
 
-const containerValue = ({ theme }) => theme?.breakpoints?.container;
-
 export const Container = styled.div`
-  padding-inline: calc(clamp(2.5em, 8vw, 8em) * 2);
+  width: min(100%, 1400px);
+  padding-inline: clamp(1.5rem, 6vw, 7rem);
   margin-inline: auto;
-
-  @media screen and (min-width: ${containerValue}) {
-    max-width: ${containerValue};
-  }
 `;
 
 export const Row = styled.div`
-  --default-padding: clamp(5em, 21vh, 12em);
+  --default-padding: clamp(3rem, 9vh, 6.5rem);
 
   &:nth-child(1) {
     padding-block-end: calc(var(--default-padding) / 2);
@@ -26,7 +21,7 @@ export const Row = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-  --image-size: clamp(4.5em, 6.5vw, 8em);
+  --image-size: clamp(3.5rem, 5vw, 5.5rem);
 
   position: relative;
   width: var(--image-size);
@@ -34,6 +29,7 @@ export const ImageWrapper = styled.div`
 `;
 
 export const MainTitle = styled.h2`
-  font-size: calc(clamp(3.25em, 7vw, 8em) * 0.875);
-  line-height: 1.1;
+  font-size: clamp(3.25rem, 7.2vw, 7.5rem);
+  letter-spacing: -0.065em;
+  line-height: 0.94;
 `;

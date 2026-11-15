@@ -16,10 +16,21 @@ export function Contact() {
   return (
     <motion.footer
       ref={containerRef}
-      className='relative max-h-screen bg-foreground text-background'
+      className='relative isolate overflow-hidden bg-[#10161b] text-[#f5f3eb]'
       style={{ y: transformY }}
     >
-      <div style={{ paddingBlock: 'clamp(5em, 21vh, 12em)' }}>
+      <div
+        aria-hidden='true'
+        className='absolute inset-0 -z-10 bg-[radial-gradient(circle_at_76%_28%,rgba(198,255,83,0.16),transparent_19rem),linear-gradient(135deg,#10161b_0%,#151e21_56%,#0d1216_100%)]'
+      />
+      <div
+        aria-hidden='true'
+        className='absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent'
+      />
+      <div
+        className='relative'
+        style={{ paddingBlock: 'clamp(4.5rem, 14vh, 9rem)' }}
+      >
         <UserDetails transformX={transformX} />
         <SocialInfo />
       </div>
