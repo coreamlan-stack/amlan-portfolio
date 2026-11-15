@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+<title>Amlan portfolio icon</title>
+<rect width="128" height="128" rx="30" fill="#101316"/>
+<circle cx="64" cy="64" r="53" fill="none" stroke="#d8ff67" stroke-width="3" opacity=".85"/>
+<path d="M29 86 47 40h9l18 46h-11l-4-11H43l-4 11H29Zm17-20h10l-5-14-5 14Z" fill="#f4f5ef"/>
+<path d="M76 40h10v20l18-20h12L96 62l21 24h-13L86 65v21H76V40Z" fill="#d8ff67"/>
+</svg>
