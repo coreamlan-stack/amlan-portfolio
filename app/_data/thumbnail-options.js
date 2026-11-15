@@ -3,7 +3,7 @@ export const thumbnailOptions = [
     href: '/work',
     title: 'Portfolio projects',
     category: 'Selected work',
-    accent: 'from-orange-400 to-amber-100',
+    accent: 'from-primary to-lime-200',
   },
   {
     href: '/work',
@@ -15,12 +15,12 @@ export const thumbnailOptions = [
     href: '/work',
     title: 'Web applications',
     category: 'React & Next.js',
-    accent: 'from-stone-300 to-orange-200',
+    accent: 'from-slate-300 to-cyan-200',
   },
   {
     href: '/work',
     title: 'Mobile experiences',
     category: 'Flutter',
-    accent: 'from-orange-700 to-stone-800',
+    accent: 'from-lime-800 to-slate-900',
   },
 ];

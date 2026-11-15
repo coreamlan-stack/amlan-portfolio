@@ -14,7 +14,7 @@ export function UserDetails({ transformX }) {
       <Row>
         <div className='flex items-center gap-8'>
           <ImageWrapper>
-            <span className='flex size-full items-center justify-center rounded-full bg-orange-400 text-xl text-zinc-950'>
+            <span className='flex size-full items-center justify-center rounded-full bg-primary text-xl text-primary-foreground'>
               AK
             </span>
           </ImageWrapper>

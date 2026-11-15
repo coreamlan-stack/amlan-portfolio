@@ -10,7 +10,7 @@ import { slideUp } from './variants';
 export function Header() {
   return (
     <motion.header
-      className='relative h-screen overflow-hidden bg-secondary-foreground text-background'
+      className='relative h-screen overflow-hidden bg-background text-foreground'
       variants={slideUp}
       initial='initial'
       animate='enter'
@@ -21,7 +21,7 @@ export function Header() {
       />
       <div
         aria-hidden='true'
-        className='absolute right-[-10vw] top-[13vh] h-[32vw] w-[32vw] rounded-full border border-orange-400/60'
+        className='absolute right-[-10vw] top-[13vh] h-[32vw] w-[32vw] rounded-full border border-primary/60 shadow-[0_0_120px_rgba(200,255,92,0.14)]'
       />
       <div className='relative flex h-full flex-col justify-end gap-2 md:flex-col-reverse md:justify-normal'>
         <div className='select-none'>
@@ -40,9 +40,7 @@ export function Header() {
             </div>
             <h4 className='text-[clamp(1.35em,2.5vw,2.75em)]'>
               <span className='block'>Software Developer</span>
-              <span className='block text-orange-300'>
-                &amp; UI/UX Designer
-              </span>
+              <span className='block text-primary'>&amp; UI/UX Designer</span>
             </h4>
           </div>
         </div>

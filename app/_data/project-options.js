@@ -1,14 +1,14 @@
 export const projectOptions = {
   first: [
-    { label: 'Interface systems', tone: 'bg-orange-400' },
-    { label: 'React applications', tone: 'bg-zinc-900' },
-    { label: 'Thoughtful motion', tone: 'bg-stone-200' },
-    { label: 'Mobile flows', tone: 'bg-orange-200' },
+    { label: 'Interface systems', tone: 'bg-primary text-background' },
+    { label: 'React applications', tone: 'bg-slate-800' },
+    { label: 'Thoughtful motion', tone: 'bg-slate-600' },
+    { label: 'Mobile flows', tone: 'bg-emerald-950' },
   ],
   second: [
-    { label: 'Spring Boot APIs', tone: 'bg-zinc-700' },
-    { label: 'Design foundations', tone: 'bg-orange-600' },
-    { label: 'Product craft', tone: 'bg-stone-300' },
+    { label: 'Spring Boot APIs', tone: 'bg-cyan-950' },
+    { label: 'Design foundations', tone: 'bg-lime-900' },
+    { label: 'Product craft', tone: 'bg-slate-700' },
     { label: 'Maintainable code', tone: 'bg-zinc-950' },
   ],
 };

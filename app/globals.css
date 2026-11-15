@@ -15,10 +15,20 @@
   body {
     background-color: theme(colors.background);
     color: theme(colors.foreground);
+    text-rendering: optimizeLegibility;
+  }
+
+  a, button {
+    outline-color: theme(colors.ring);
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid theme(colors.ring);
+    outline-offset: 4px;
   }
 
   .hero-grid {
-    background-image: linear-gradient(to right, rgb(255 255 255 / 0.08) 1px, transparent 1px), linear-gradient(to bottom, rgb(255 255 255 / 0.08) 1px, transparent 1px);
+    background-image: linear-gradient(to right, rgb(235 255 175 / 0.09) 1px, transparent 1px), linear-gradient(to bottom, rgb(235 255 175 / 0.09) 1px, transparent 1px);
     background-size: 64px 64px;
     mask-image: linear-gradient(to bottom, black, transparent 75%);
   }
