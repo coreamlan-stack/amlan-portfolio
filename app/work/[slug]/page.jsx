@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import { MediaReveal } from '@/app/_components/media-reveal';
 import { PageReveal } from '@/app/_components/page-reveal';
 import { PageShell } from '@/app/_components/page-shell';
 import { SubpageNav } from '@/app/_components/subpage-nav';
@@ -54,7 +55,7 @@ export default function CaseStudyPage({ params }) {
           </header>
 
           <div className='mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-12'>
-            <PageReveal className='overflow-hidden rounded-[1.25rem] bg-[#192023]'>
+            <MediaReveal className='overflow-hidden rounded-[1.25rem] bg-[#192023]'>
               <Image
                 src={project.cover}
                 alt={project.alt}
@@ -64,7 +65,7 @@ export default function CaseStudyPage({ params }) {
                 priority
                 className='aspect-[16/10] w-full object-cover sm:aspect-[16/8]'
               />
-            </PageReveal>
+            </MediaReveal>
             <p className='mt-4 max-w-2xl text-xs leading-relaxed text-muted-foreground'>{project.note}</p>
           </div>
 
