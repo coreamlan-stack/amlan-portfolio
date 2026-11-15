@@ -1,6 +1,6 @@
 /** @type {import('next').Metadata} */
 export const rootMetadata = {
-  metadataBase: new URL('https://github.com/coreamlan-stack'),
+  metadataBase: new URL('https://amlan-portfolio-six.vercel.app'),
   title: {
     template: '%s | Amlan Kumar Bhowmik',
     default: 'Amlan Kumar Bhowmik — Software Developer & UI/UX Designer',
@@ -25,6 +25,7 @@ export const rootMetadata = {
   publisher: 'Amlan Kumar Bhowmik',
   openGraph: {
     type: 'website',
+    url: 'https://amlan-portfolio-six.vercel.app',
     title: 'Amlan Kumar Bhowmik — Software Developer & UI/UX Designer',
     description:
       'A design-driven software developer building elegant, maintainable digital experiences.',
