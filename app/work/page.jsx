@@ -1,7 +1,8 @@
+import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+
 import { PageReveal } from '@/app/_components/page-reveal';
 import { SubpageNav } from '@/app/_components/subpage-nav';
-import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import { caseStudies } from '@/data';
 
 export const metadata = {
