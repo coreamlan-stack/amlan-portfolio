@@ -7,6 +7,11 @@ export const rootMetadata = {
   },
   description:
     'Portfolio of Amlan Kumar Bhowmik, a design-driven software developer building elegant, maintainable digital experiences.',
+  icons: {
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+    shortcut: '/icon.svg',
+  },
+  manifest: '/manifest.webmanifest',
   generator: 'Next.js',
   applicationName: 'Amlan Kumar Bhowmik Portfolio',
   referrer: 'origin-when-cross-origin',
