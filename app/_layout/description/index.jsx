@@ -21,7 +21,7 @@ export function Description() {
           </Title>
         </div>
 
-        <div className='basis-7/12 lg:basis-3/12'>
+        <div className='w-full lg:w-auto lg:basis-3/12'>
           <ParallaxFade>
             <Balancer as='p' className='mt-2 text-base lg:text-lg'>
               I work across frontend engineering and UI/UX design, bringing the
@@ -30,16 +30,10 @@ export function Description() {
           </ParallaxFade>
         </div>
 
-        <motion.div
-          whileInView={{ y: '-15%' }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.5,
-          }}
-        >
-          <div className='absolute right-0 top-3/4 lg:top-full lg:me-10'>
+        <motion.div className='w-full lg:w-auto' transition={{ duration: 0.5 }}>
+          <div className='relative mt-1 flex justify-start lg:absolute lg:right-0 lg:top-full lg:me-10 lg:mt-0'>
             <Link href='/about' passHref>
-              <MagneticButton variant='ghost' size='xl'>
+              <MagneticButton variant='ghost' size='xl' className='!px-8 !py-7 !text-sm sm:!px-10 sm:!py-10 lg:!px-14 lg:!py-20 lg:!text-lg'>
                 About Amlan
               </MagneticButton>
             </Link>
