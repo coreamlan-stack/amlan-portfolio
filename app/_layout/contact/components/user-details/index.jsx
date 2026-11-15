@@ -12,7 +12,7 @@ export function UserDetails({ transformX }) {
   return (
     <Container>
       <Row>
-        <div className='flex items-center gap-4 sm:gap-8'>
+        <div className='flex min-w-0 items-center gap-3 sm:gap-8'>
           <ImageWrapper>
             <span className='flex size-full items-center justify-center rounded-full bg-primary text-xl text-primary-foreground'>
               AK
@@ -20,7 +20,7 @@ export function UserDetails({ transformX }) {
           </ImageWrapper>
           <MainTitle>Let’s build</MainTitle>
         </div>
-        <div className='mt-3 flex items-center justify-between gap-6'>
+        <div className='mt-3 flex items-center justify-between gap-3 sm:gap-6'>
           <MainTitle>with intent</MainTitle>
           <ArrowDownLeft
             className='shrink-0 text-primary'
@@ -33,10 +33,10 @@ export function UserDetails({ transformX }) {
       <Row>
         <div className='relative w-full'>
           <div className='h-px bg-[#f5f3eb]/25' />
-          <div className='absolute right-0 top-0 z-20 -translate-x-1/2 -translate-y-1/2'>
-            <motion.div style={{ x: transformX }}>
+          <div className='relative z-20 mt-6 flex justify-start md:absolute md:right-0 md:top-0 md:mt-0 md:-translate-x-1/2 md:-translate-y-1/2'>
+            <motion.div className='max-md:!transform-none' style={{ x: transformX }}>
               <Link href='/contact'>
-                <MagneticButton variant='primary' size='lg'>
+                <MagneticButton variant='primary' size='lg' className='!px-8 !py-7 !text-base sm:!px-10 sm:!py-12 md:!px-12 md:!py-20'>
                   Get in touch
                 </MagneticButton>
               </Link>
@@ -54,7 +54,7 @@ export function UserDetails({ transformX }) {
             <MagneticButton
               variant='outline'
               size='md'
-              className='w-full border-[#f5f3eb]/35 hover:border-primary'
+              className='w-full !px-7 !py-5 !text-sm sm:!px-8 sm:!py-8 sm:!text-base border-[#f5f3eb]/35 hover:border-primary'
             >
               View GitHub
             </MagneticButton>
