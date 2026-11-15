@@ -108,3 +108,18 @@
     transition: none !important;
   }
 }
+
+/* Low-cost touch trail: small, translucent rings during finger movement.
+   Always pointer-events:none so scrolling and taps stay native. */
+.fluid-touch-ripple.fluid-touch-trail {
+  width: 20px;
+  height: 20px;
+  border-color: rgba(216, 255, 103, 0.5);
+  background: rgba(216, 255, 103, 0.05);
+  animation: touch-trail 440ms ease-out forwards;
+}
+
+@keyframes touch-trail {
+  0% { opacity: 0.55; transform: translate(-50%, -50%) scale(0.4); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(2.4); }
+}
