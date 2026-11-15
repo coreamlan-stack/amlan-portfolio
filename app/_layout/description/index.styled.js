@@ -7,9 +7,9 @@ export const Wrapper = styled.div`
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: space-between;
-  gap: 2.5rem;
-  padding-block: clamp(4em, 12vw, 20em) clamp(5em, 14vh, 16em);
-  padding-inline: clamp(2.5em, 4vw, 8em);
+  gap: 2rem;
+  padding-block: clamp(3.5rem, 8vw, 12rem) clamp(4rem, 10vh, 9rem);
+  padding-inline: clamp(1.25rem, 4vw, 8rem);
 
   @media screen and (min-width: ${({ theme }) => theme?.breakpoints?.lg}) {
     flex-wrap: revert;
