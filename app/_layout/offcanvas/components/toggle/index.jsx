@@ -37,13 +37,16 @@ export function OffcanvasToggle({ isOpen, handleOpen }) {
       <MagneticButton
         size='md'
         variant='ghost'
-        className='border border-solid border-muted-foreground'
+        className='!h-16 !w-16 !p-0 border border-solid border-muted-foreground sm:!h-auto sm:!w-auto sm:!px-8 sm:!py-10'
+        aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={isOpen}
+        aria-controls='portfolio-menu'
         onClick={() => handleOpen(!isOpen)}
       >
         <span
           className={cn([classes.burger], [isOpen && classes.burgerActive])}
         />
-        <span className='sr-only focus:not-sr-only'>Offcanvas Toggle</span>
+        <span className='sr-only'>{isOpen ? 'Close menu' : 'Open menu'}</span>
       </MagneticButton>
     </motion.div>
   );
