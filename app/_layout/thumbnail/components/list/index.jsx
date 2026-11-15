@@ -15,7 +15,7 @@ export function ThumbnailList({
   handlePointerLeave,
   moveItems,
 }) {
-  const items = thumbnailOptions.map(({ href, title, category }, index) => {
+  const items = thumbnailOptions.map(({ href, title, category, cover, alt }, index) => {
     const id = index;
     return (
       <li
@@ -41,6 +41,9 @@ export function ThumbnailList({
           className='flex flex-wrap items-center justify-between gap-4 lg:flex-nowrap'
           passHref
         >
+          <div className='mb-4 w-full overflow-hidden rounded-2xl border border-white/10 lg:hidden'>
+            <img src={cover} alt={alt} loading='lazy' className='aspect-[5/3] w-full object-cover transition-transform duration-700 motion-safe:group-active:scale-[1.03]' />
+          </div>
           <h4
             style={{
               fontSize: 'clamp(2.25rem, 6vw, 6rem)',
