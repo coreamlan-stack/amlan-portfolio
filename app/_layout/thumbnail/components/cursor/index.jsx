@@ -17,7 +17,7 @@ export const ThumbnailCursorCircle = forwardRef(
     return (
       <MotionComponent
         ref={ref}
-        className='bg-primary'
+        className='hidden bg-primary lg:flex'
         variants={variants}
         initial='initial'
         animate={active ? 'enter' : 'closed'}
@@ -36,6 +36,7 @@ export const ThumbnailCursorLabel = forwardRef(
     return (
       <MotionComponent
         ref={ref}
+        className='hidden lg:flex'
         variants={variants}
         initial='initial'
         animate={active ? 'enter' : 'closed'}
