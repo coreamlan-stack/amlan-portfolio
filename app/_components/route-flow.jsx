@@ -5,56 +5,52 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
-// This persists under the root layout. Navigation gets a soft curved sweep;
-// the introductory language preloader is still controlled separately.
+// The root layout persists. Keep the first-visit preloader separate and do not
+// hide content behind a screen-sized transition overlay on route changes.
 export function RouteFlow({ children }) {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
   const previous = useRef(pathname);
-  const [sweep, setSweep] = useState(null);
+  const [wave, setWave] = useState(null);
 
   useEffect(() => {
     if (previous.current === pathname) return;
     previous.current = pathname;
     if (reduceMotion) return;
-    setSweep(pathname);
+    setWave(pathname);
   }, [pathname, reduceMotion]);
 
   return (
     <>
-      <AnimatePresence mode='wait' initial={false}>
+      <AnimatePresence mode='popLayout' initial={false}>
         <motion.div
           key={pathname}
-          initial={reduceMotion ? false : { opacity: 0, y: 26 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -16 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 28, filter: 'blur(4px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -14 }}
           transition={
             reduceMotion
               ? { duration: 0 }
-              : { type: 'spring', stiffness: 120, damping: 23, mass: 0.85 }
+              : { type: 'spring', stiffness: 115, damping: 23, mass: 0.85 }
           }
+          style={{ minHeight: '100dvh' }}
         >
           {children}
         </motion.div>
       </AnimatePresence>
-
       <AnimatePresence>
-        {sweep && !reduceMotion && (
+        {wave && !reduceMotion && (
           <motion.div
-            key={sweep}
+            key={wave}
             aria-hidden='true'
-            className='pointer-events-none fixed inset-0 z-[55] overflow-hidden'
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
+            className='pointer-events-none fixed inset-x-0 bottom-0 z-[55] h-24 overflow-hidden'
+            initial={{ opacity: 0, y: 68, scaleY: 0.45 }}
+            animate={{ opacity: [0, 0.55, 0], y: [-8, -22, -62], scaleY: [0.45, 1, 0.7] }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.8, 0.25, 1] }}
+            onAnimationComplete={() => setWave(current => current === wave ? null : current)}
           >
-            <motion.div
-              className='liquid-route-sweep absolute inset-x-0 top-0 h-[115dvh]'
-              initial={{ y: '-115%' }}
-              animate={{ y: '105%' }}
-              transition={{ duration: 0.72, ease: [0.76, 0, 0.24, 1] }}
-              onAnimationComplete={() => setSweep(current => current === sweep ? null : current)}
-            />
+            <div className='h-full w-full rounded-[50%_50%_0_0] bg-primary/20 blur-xl' />
           </motion.div>
         )}
       </AnimatePresence>
