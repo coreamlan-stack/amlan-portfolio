@@ -1,22 +1,7 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
-
-// Per-route entrance for inner pages. The home hero stays untouched.
+// The global RouteFlow owns navigation motion. Keep this wrapper layout-only
+// so we don't double-animate each page and introduce a jerky entrance.
 export function PageShell({ children }) {
-  const reducedMotion = useReducedMotion();
-
-  return (
-    <motion.div
-      initial={reducedMotion ? false : { opacity: 0, y: 22 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={
-        reducedMotion
-          ? { duration: 0 }
-          : { type: 'spring', stiffness: 115, damping: 23, mass: 0.9 }
-      }
-    >
-      {children}
-    </motion.div>
-  );
+  return <>{children}</>;
 }
