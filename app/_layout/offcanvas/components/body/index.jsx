@@ -2,33 +2,38 @@
 
 import { motion } from 'framer-motion';
 
-import { FixedOverlay } from '@/components';
-
 import { OffcanvasBackdrop } from './back-drop';
 import { OffcanvasFooter } from './footer';
 import { OffcanvasLinks } from './links';
 import { slideLeft } from './variants';
 
-const MotionComponent = motion(FixedOverlay);
-
 export function OffcanvasBody({ onClose }) {
   return (
-    <MotionComponent
+    <motion.div
       id='portfolio-menu'
-      className='z-40 overflow-hidden'
+      role='dialog'
+      aria-modal='true'
+      aria-label='Site navigation'
+      className='fixed inset-0 z-40'
       variants={slideLeft}
       initial='initial'
       animate='enter'
       exit='exit'
     >
-      <OffcanvasBackdrop />
-
-      <div className='absolute right-0 top-0 h-[100dvh] w-full overflow-y-auto overscroll-contain bg-foreground text-background sm:w-[min(600px,100vw)]'>
-        <div className='flex min-h-full flex-col justify-between gap-12 px-7 pb-8 pt-24 sm:p-16 lg:p-24'>
+      <button
+        type='button'
+        className='absolute inset-0 cursor-default bg-black/55'
+        onClick={onClose}
+        aria-label='Close navigation'
+        tabIndex={-1}
+      />
+      <div className='absolute inset-y-0 right-0 w-full overflow-hidden bg-foreground text-background sm:w-[min(600px,100vw)]'>
+        <OffcanvasBackdrop />
+        <div className='relative flex h-dvh flex-col justify-between gap-6 overflow-y-auto overscroll-contain px-8 pb-8 pt-24 sm:px-16 sm:pb-12 sm:pt-28 lg:px-24'>
           <OffcanvasLinks onClose={onClose} />
           <OffcanvasFooter />
         </div>
       </div>
-    </MotionComponent>
+    </motion.div>
   );
 }
