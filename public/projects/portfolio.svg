@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 960">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#141819"/><stop offset=".65" stop-color="#202923"/><stop offset="1" stop-color="#0d1215"/></linearGradient><radialGradient id="glow"><stop stop-color="#d8ff67" stop-opacity=".28"/><stop offset="1" stop-color="#d8ff67" stop-opacity="0"/></radialGradient><filter id="shadow"><feGaussianBlur stdDeviation="20"/></filter></defs>
+<rect width="1200" height="960" fill="url(#bg)"/><ellipse cx="630" cy="460" rx="560" ry="440" fill="url(#glow)"/>
+<g fill="none" stroke="#d8ff67" stroke-opacity=".55" stroke-width="2">
+<path d="M-100 720C300 280 650 950 1300 250"/><path d="M-100 680C300 240 650 910 1300 210"/><path d="M-100 760C300 320 650 990 1300 290"/>
+<path d="M-100 630C300 190 650 860 1300 160" opacity=".3"/><path d="M-100 810C300 370 650 1040 1300 340" opacity=".3"/>
+</g>
+<g transform="translate(155 175) rotate(-6 460 290)">
+<rect width="900" height="550" rx="30" fill="#0e1214" stroke="#47554b" stroke-width="3"/>
+<rect x="30" y="32" width="840" height="48" rx="17" fill="#1e2826"/>
+<circle cx="60" cy="56" r="7" fill="#d8ff67"/><circle cx="85" cy="56" r="7" fill="#9fb5a6"/><circle cx="110" cy="56" r="7" fill="#576b60"/>
+<text x="62" y="160" fill="#d8ff67" font-size="15" font-family="Arial,sans-serif" letter-spacing="5">DESIGN × DEVELOPMENT</text>
+<text x="61" y="289" fill="#f6f7f0" font-size="115" font-family="Arial,sans-serif" font-weight="600" letter-spacing="-9">AMLAN</text>
+<text x="60" y="378" fill="#f6f7f0" font-size="73" font-family="Arial,sans-serif" letter-spacing="-5">KUMAR</text>
+<path d="M62 418H837" stroke="#f5f5ee" stroke-opacity=".22"/>
+<rect x="63" y="450" width="195" height="53" rx="27" fill="#d8ff67"/><text x="103" y="484" fill="#111616" font-size="22" font-family="Arial,sans-serif">View work ↗</text>
+<circle cx="742" cy="372" r="77" stroke="#d8ff67" stroke-width="3" fill="none"/><path d="M712 400l65-65m-44 0h44v44" stroke="#d8ff67" stroke-width="5" fill="none"/>
+</g>
+<circle cx="1060" cy="170" r="95" fill="#d8ff67"/><path d="M1010 170h100m-50-50v100" stroke="#1e281c" stroke-width="3"/>
+<text x="85" y="105" fill="#d8ff67" font-family="Arial,sans-serif" letter-spacing="6" font-size="18">CASE STUDY 02</text><text x="785" y="895" fill="#eef5e7" font-family="Arial,sans-serif" letter-spacing="4" font-size="18">CREATIVE ENGINEERING</text>
+</svg>
