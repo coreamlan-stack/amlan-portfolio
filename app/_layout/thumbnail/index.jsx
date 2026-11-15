@@ -36,7 +36,9 @@ export function Thumbnail() {
   return (
     <section
       className='container relative'
-      onPointerMove={({ clientX, clientY }) => moveItems(clientX, clientY)}
+      onPointerMove={event => {
+        if (event.pointerType === 'mouse') moveItems(event.clientX, event.clientY);
+      }}
     >
       <div className='my-8 flex flex-col gap-10'>
         <ThumbnailLabel>Selected work</ThumbnailLabel>
