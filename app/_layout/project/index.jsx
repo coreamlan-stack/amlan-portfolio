@@ -16,14 +16,14 @@ export function Project() {
   const { transformX1, transformX2, transformY } =
     useProjectSlider(containerRef);
 
-  const firstSlider = projectOptions.first.map(({ type, source }) => {
+  const firstSlider = projectOptions.first.map(({ label, tone }) => {
     const id = randomId();
-    return <ProjectSlider key={id} type={type} source={source} />;
+    return <ProjectSlider key={id} label={label} tone={tone} />;
   });
 
-  const secondSlider = projectOptions.second.map(({ type, source }) => {
+  const secondSlider = projectOptions.second.map(({ label, tone }) => {
     const id = randomId();
-    return <ProjectSlider key={id} type={type} source={source} />;
+    return <ProjectSlider key={id} label={label} tone={tone} />;
   });
 
   return (

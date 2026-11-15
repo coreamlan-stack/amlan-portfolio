@@ -1,17 +1,19 @@
-import { InProgress } from '@/components';
-import { Transition } from '@/layout';
+import { Navbar, Transition } from '@/layout';
 
-/** @type {import('next').Metadata} */
+import { ContactPage } from '../../_components/portfolio-page';
+
 export const metadata = {
   title: 'Contact',
-  description:
-    'Helping brands thrive in the digital world. Located in The Netherlands. Delivering tailor-made digital designs and building interactive websites from scratch. © Code by Dennis',
+  description: 'Connect with Amlan Kumar Bhowmik on GitHub.',
 };
 
 export default function Contact() {
   return (
     <Transition>
-      <InProgress>Contact Page</InProgress>
+      <div className='bg-background text-foreground'>
+        <Navbar />
+        <ContactPage />
+      </div>
     </Transition>
   );
 }

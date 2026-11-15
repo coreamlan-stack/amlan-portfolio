@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { MoveDownRight } from 'lucide-react';
-import { CldImage } from 'next-cloudinary';
 
 import { ParallaxSlider } from '@/components';
 
@@ -16,35 +15,34 @@ export function Header() {
       initial='initial'
       animate='enter'
     >
-      <CldImage
-        src='Dennis-Portfolio/images/lapetmmek4fymz68m4u8'
-        className='object-cover md:scale-125 md:object-contain'
-        fill={true}
-        sizes='100vw'
-        alt='Dennis Snellenberg Personal Picture'
+      <div
+        aria-hidden='true'
+        className='hero-grid absolute inset-0 opacity-80'
       />
-
+      <div
+        aria-hidden='true'
+        className='absolute right-[-10vw] top-[13vh] h-[32vw] w-[32vw] rounded-full border border-orange-400/60'
+      />
       <div className='relative flex h-full flex-col justify-end gap-2 md:flex-col-reverse md:justify-normal'>
         <div className='select-none'>
-          <h1 className='text-[max(9em,15vw)]'>
+          <h1 className='text-[max(5.25em,13vw)] leading-[0.86] sm:text-[max(7em,14vw)]'>
             <ParallaxSlider repeat={4} baseVelocity={2}>
               <span className='pe-12'>
-                Dennis Snellenberg
-                <span className='spacer'>—</span>
+                Amlan Kumar Bhowmik <span className='spacer'>—</span>
               </span>
             </ParallaxSlider>
           </h1>
         </div>
-
         <div className='md:ml-auto'>
           <div className='mx-10 max-md:my-12 md:mx-36'>
             <div className='mb-4 md:mb-20'>
               <MoveDownRight size={28} strokeWidth={1.25} />
             </div>
-
-            <h4 className='text-[clamp(1.55em,2.5vw,2.75em)]'>
-              <span className='block'>Freelance</span>
-              <span className='block'>Designer &amp; Developer</span>
+            <h4 className='text-[clamp(1.35em,2.5vw,2.75em)]'>
+              <span className='block'>Software Developer</span>
+              <span className='block text-orange-300'>
+                &amp; UI/UX Designer
+              </span>
             </h4>
           </div>
         </div>

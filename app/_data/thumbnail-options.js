@@ -1,22 +1,26 @@
 export const thumbnailOptions = [
   {
-    href: '/fabric',
-    title: 'FABRIC™',
-    image: 'Dennis-Portfolio/images/hlz36eeb3ddfvqt9tex9',
+    href: '/work',
+    title: 'Portfolio projects',
+    category: 'Selected work',
+    accent: 'from-orange-400 to-amber-100',
   },
   {
-    href: '/aanstekelijk',
-    title: 'Aanstekelijk',
-    image: 'Dennis-Portfolio/images/aigt2q3xiqb8ovujzscc',
+    href: '/work',
+    title: 'Product interfaces',
+    category: 'UI/UX direction',
+    accent: 'from-zinc-900 to-zinc-500',
   },
   {
-    href: '/base-create',
-    title: 'Base Create',
-    image: 'Dennis-Portfolio/images/ahuzarh793qmv9sdveyk',
+    href: '/work',
+    title: 'Web applications',
+    category: 'React & Next.js',
+    accent: 'from-stone-300 to-orange-200',
   },
   {
-    href: '/avvr',
-    title: 'AVVR',
-    image: 'Dennis-Portfolio/images/pzychyr1ans60gqlevhg',
+    href: '/work',
+    title: 'Mobile experiences',
+    category: 'Flutter',
+    accent: 'from-orange-700 to-stone-800',
   },
 ];

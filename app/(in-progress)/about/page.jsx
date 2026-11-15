@@ -1,17 +1,20 @@
-import { InProgress } from '@/components';
-import { Transition } from '@/layout';
+import { Navbar, Transition } from '@/layout';
 
-/** @type {import('next').Metadata} */
+import { AboutPage } from '../../_components/portfolio-page';
+
 export const metadata = {
   title: 'About',
   description:
-    'Helping brands thrive in the digital world. Located in The Netherlands. Delivering tailor-made digital designs and building interactive websites from scratch. © Code by Dennis',
+    'Learn about Amlan Kumar Bhowmik’s approach to frontend engineering and UI/UX design.',
 };
 
 export default function About() {
   return (
     <Transition>
-      <InProgress>About Page</InProgress>
+      <div className='bg-background text-foreground'>
+        <Navbar />
+        <AboutPage />
+      </div>
     </Transition>
   );
 }

@@ -1,45 +1,40 @@
 /** @type {import('next').Metadata} */
 export const rootMetadata = {
-  metadataBase: new URL('https://dennis-snellenberg-portfolio.vercel.app/'),
+  metadataBase: new URL('https://github.com/coreamlan-stack'),
   title: {
-    template: '%s | Dennis Snellenberg',
-    default: 'Dennis Snellenberg • Freelance Designer & Developer',
+    template: '%s | Amlan Kumar Bhowmik',
+    default: 'Amlan Kumar Bhowmik — Software Developer & UI/UX Designer',
   },
   description:
-    'Helping brands thrive in the digital world. Located in The Netherlands. Delivering tailor-made digital designs and building interactive websites from scratch. © Code by Dennis',
-  generator: 'Dennis Snellenberg',
-  applicationName: 'Dennis Snellenberg',
+    'Portfolio of Amlan Kumar Bhowmik, a design-driven software developer building elegant, maintainable digital experiences.',
+  generator: 'Next.js',
+  applicationName: 'Amlan Kumar Bhowmik Portfolio',
   referrer: 'origin-when-cross-origin',
-  keywords: ['Design', 'Develope', 'Freelance'],
-  authors: [
-    { name: 'Ali Bagheri', url: 'https://www.github.com/alibagheri2079' },
+  keywords: [
+    'Software Developer',
+    'UI/UX Designer',
+    'React',
+    'Next.js',
+    'Flutter',
+    'Spring Boot',
   ],
-  creator: 'Ali Bagheri',
-  publisher: 'Ali Bagheri',
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Dennis Snellenberg',
+  authors: [
+    { name: 'Amlan Kumar Bhowmik', url: 'https://github.com/coreamlan-stack' },
+  ],
+  creator: 'Amlan Kumar Bhowmik',
+  publisher: 'Amlan Kumar Bhowmik',
+  openGraph: {
+    type: 'website',
+    title: 'Amlan Kumar Bhowmik — Software Developer & UI/UX Designer',
     description:
-      'Helping brands thrive in the digital world. Located in The Netherlands. Delivering tailor-made digital designs and building interactive websites from scratch. © Code by Dennis',
-    siteId: '1467726470533754880',
-    creator: '@AliBagheri2079',
-    creatorId: '1467726470533754880',
-    images: {
-      url: 'https://dennis-snellenberg-portfolio.vercel.app/screenshot.png',
-      alt: 'Portfolio Screenshot',
-    },
+      'A design-driven software developer building elegant, maintainable digital experiences.',
   },
-  robots: {
-    index: false,
-    follow: true,
-    nocache: true,
-    googleBot: {
-      index: true,
-      follow: false,
-      noimageindex: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+  twitter: {
+    card: 'summary',
+    title: 'Amlan Kumar Bhowmik',
+    description:
+      'A design-driven software developer building elegant, maintainable digital experiences.',
+    creator: '@coreamlan-stack',
   },
+  robots: { index: true, follow: true },
 };

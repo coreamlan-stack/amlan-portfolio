@@ -1,17 +1,19 @@
-import { InProgress } from '@/components';
-import { Transition } from '@/layout';
+import { Navbar, Transition } from '@/layout';
 
-/** @type {import('next').Metadata} */
+import { WorkPage } from '../../_components/portfolio-page';
+
 export const metadata = {
-  title: 'Work',
-  description:
-    'Helping brands thrive in the digital world. Located in The Netherlands. Delivering tailor-made digital designs and building interactive websites from scratch. © Code by Dennis',
+  title: 'Selected Work',
+  description: 'Selected work and case studies from Amlan Kumar Bhowmik.',
 };
 
 export default function Work() {
   return (
     <Transition>
-      <InProgress>Work Page</InProgress>
+      <div className='bg-background text-foreground'>
+        <Navbar />
+        <WorkPage />
+      </div>
     </Transition>
   );
 }

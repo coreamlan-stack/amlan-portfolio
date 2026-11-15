@@ -1,38 +1,14 @@
 export const projectOptions = {
   first: [
-    {
-      type: 'image',
-      source: 'Dennis-Portfolio/images/rpmf9egswyd8563mxe9t',
-    },
-    {
-      type: 'video',
-      source: 'Dennis-Portfolio/videos/fldn3dntkusr22roeybr',
-    },
-    {
-      type: 'image',
-      source: 'Dennis-Portfolio/images/k7bp2wbfmalpjfk3yk5q',
-    },
-    {
-      type: 'video',
-      source: 'Dennis-Portfolio/videos/x8w8sbohl5wkfuelmkhu',
-    },
+    { label: 'Interface systems', tone: 'bg-orange-400' },
+    { label: 'React applications', tone: 'bg-zinc-900' },
+    { label: 'Thoughtful motion', tone: 'bg-stone-200' },
+    { label: 'Mobile flows', tone: 'bg-orange-200' },
   ],
   second: [
-    {
-      type: 'image',
-      source: 'Dennis-Portfolio/images/r4kcbkvkl0djjt0mxmcw',
-    },
-    {
-      type: 'video',
-      source: 'Dennis-Portfolio/videos/q0yepc6dssbosmdk3isu',
-    },
-    {
-      type: 'image',
-      source: 'Dennis-Portfolio/images/ffoc9zsoeusptc7jcid5',
-    },
-    {
-      type: 'video',
-      source: 'Dennis-Portfolio/videos/usiswniv5qhgu2vamhnx',
-    },
+    { label: 'Spring Boot APIs', tone: 'bg-zinc-700' },
+    { label: 'Design foundations', tone: 'bg-orange-600' },
+    { label: 'Product craft', tone: 'bg-stone-300' },
+    { label: 'Maintainable code', tone: 'bg-zinc-950' },
   ],
 };
