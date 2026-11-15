@@ -2,6 +2,7 @@ import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { MediaReveal } from '@/app/_components/media-reveal';
 import { PageReveal } from '@/app/_components/page-reveal';
 import { PageShell } from '@/app/_components/page-shell';
 import { SubpageNav } from '@/app/_components/subpage-nav';
@@ -47,7 +48,7 @@ export default function AboutPage() {
         </section>
 
         <section className='mx-auto grid max-w-[1440px] gap-12 px-6 pb-28 sm:px-12 lg:grid-cols-[1fr_1.15fr] lg:gap-20 lg:px-20'>
-          <PageReveal className='overflow-hidden rounded-3xl bg-[#182124]'>
+          <MediaReveal className='overflow-hidden rounded-3xl bg-[#182124]'>
             <Image
               src='/projects/about-abstract.svg'
               width={1000}
@@ -56,7 +57,7 @@ export default function AboutPage() {
               alt='Abstract illustration connecting design and engineering'
               className='aspect-square size-full object-cover'
             />
-          </PageReveal>
+          </MediaReveal>
           <div className='flex flex-col justify-center'>
             <p className='mb-7 text-xs uppercase tracking-[0.25em] text-primary'>The way I work</p>
             <PageReveal>
