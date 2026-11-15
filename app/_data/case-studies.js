@@ -1,34 +1,86 @@
-// Project descriptions stay deliberately factual; artwork is illustrative, not screenshots.
+// Only publish details grounded in existing work. Do not imply government
+// endorsement, client permission, delivery status, or results without evidence.
+// Screenshots may be added to the public/projects folder after approval.
 export const caseStudies = [
   {
     slug: 'hrms',
     title: 'HRMS',
-    eyebrow: '01 / Product engineering',
-    discipline: 'Frontend development · UI/UX',
+    eyebrow: '01 / Administrative systems',
+    discipline: 'Frontend engineering · UI/UX',
     year: 'Ongoing',
     cover: '/projects/hrms.svg',
-    alt: 'Illustrative diagram of a structured employee management interface',
-    summary: 'A government-focused human resource management frontend, designed for complex employee records and workflows.',
-    overview: 'Working on an HRMS frontend means turning dense administrative tasks into understandable steps. The interface brings employee onboarding, directory browsing, payroll information, role-based access and leave workflows together while respecting existing backend API contracts.',
-    challenge: 'Administrative forms combine conditional fields, complex location hierarchies, permissions and long-running tasks. The goal is clarity without weakening validation or changing server-owned business rules.',
-    approach: ['Designed a progressive onboarding experience with clearly defined steps and resumable drafts.', 'Refined location selection, employee directory filtering and payroll presentation around existing API contracts.', 'Improved loading, error and retry states, with attention to permissions and read-only records.'],
-    stack: ['React', 'Frontend architecture', 'UI/UX', 'API integration'],
-    note: 'Illustrative artwork. Production screenshots and sensitive employee records are intentionally not shown.',
+    alt: 'Illustrative UI artwork for employee management, not a production screenshot',
+    summary: 'Making complex employee records, onboarding and leave processes easier to navigate.',
+    overview: 'My HRMS frontend work focuses on the experience around employee records, onboarding, location selection, payroll presentation, permission-aware interfaces and leave-management journeys. I work within existing backend contracts rather than moving business rules into the client.',
+    challenge: 'Large administrative workflows need clarity, continuity and careful permissions. Different roles must see the right actions, and long forms need reliable resume and error states.',
+    approach: [
+      'Organized onboarding into clear steps and improved draft-resume behavior.',
+      'Refined dependent location selections, directory search and payroll display.',
+      'Improved retry, loading and permission-aware read-only states.'
+    ],
+    stack: ['React', 'UI/UX', 'Frontend architecture', 'API integration'],
+    access: 'internal',
+    note: 'A detailed product UI is not published here. Artwork is illustrative, and no employee or internal-system data is included.',
+  },
+  {
+    slug: 'saathi',
+    title: 'Saathi',
+    eyebrow: '02 / Mobile experience',
+    discipline: 'Flutter · Dart · Android',
+    year: 'In development',
+    cover: '/projects/saathi.svg',
+    alt: 'Illustrative mobile app composition, not a screenshot of Saathi',
+    summary: 'An independent Flutter mobile project exploring simpler personal document management.',
+    overview: 'Saathi is an Android-first Flutter project. Its direction has evolved from exploring service discovery and useful links into a document-focused utility, with an emphasis on an offline-first experience.',
+    challenge: 'Personal document tools should feel approachable while handling files and potentially sensitive information carefully.',
+    approach: [
+      'Developed an Android-first application in Flutter and Dart, with testing on an Android device.',
+      'Explored onboarding, navigation, search and structured mobile information flows.',
+      'Planned document-focused capabilities such as organization, scanning, reminders and offline access; these are product directions, not claims that everything has shipped.'
+    ],
+    stack: ['Flutter', 'Dart', 'Android', 'Mobile UI/UX'],
+    access: 'independent',
+    note: 'Independent project; not an official or government-affiliated application. Visuals are placeholders until real screenshots are added.',
+  },
+  {
+    slug: 'billing-system',
+    title: 'Billing system',
+    eyebrow: '03 / Application development',
+    discipline: 'Business application · UI/UX',
+    year: 'Private project',
+    cover: '/projects/billing.svg',
+    alt: 'Typographic placeholder for a billing system project',
+    summary: 'A billing-system project focused on practical business software.',
+    overview: 'I have worked on a billing-system project. This public case study keeps its scope deliberately high-level until I can share an accurate feature breakdown, screenshots and my specific contributions.',
+    challenge: 'Business software needs legible information, predictable workflows and straightforward user interaction. Project-specific requirements are not described publicly here.',
+    approach: [
+      'Present the project as a software-development case study without publishing internal screens.',
+      'Add verified workflow details and implementation decisions once reviewed for public sharing.',
+      'Keep the visual showcase ready for authentic screenshots rather than invented dashboards.'
+    ],
+    stack: ['Business software', 'Application UI', 'Workflow design'],
+    access: 'details-pending',
+    note: 'Project details and screenshots are pending review. No client, government affiliation or implementation features are implied.',
   },
   {
     slug: 'portfolio',
     title: 'Personal portfolio',
-    eyebrow: '02 / Creative development',
+    eyebrow: '04 / Creative development',
     discipline: 'Next.js · Motion · Design',
     year: '2026',
     cover: '/projects/portfolio.svg',
-    alt: 'Illustrative abstract composition showing flowing typography and motion paths',
-    summary: 'An experimental personal site exploring the balance of expressive interaction and clear interface design.',
-    overview: 'This portfolio is a living project: a place to refine design systems, motion language, page transitions, accessibility and responsive behavior in public.',
-    challenge: 'The central design challenge is balancing memorable animation with usability, especially on smaller touch screens.',
-    approach: ['Built a component-driven Next.js portfolio with reusable layouts and styling.', 'Explored motion through Framer Motion, GSAP and Lenis.', 'Iterated on mobile navigation, section hierarchy and interaction performance based on real-device feedback.'],
+    alt: 'Illustrative composition for this portfolio',
+    summary: 'An evolving personal website exploring expressive interaction and thoughtful engineering.',
+    overview: 'This portfolio is a living project for exploring design systems, interaction design, page transitions, accessibility and responsive behavior in public.',
+    challenge: 'An expressive portfolio needs memorable motion without sacrificing readability, comfort or performance on touch devices.',
+    approach: [
+      'Built the site around Next.js and reusable frontend components.',
+      'Explored motion using Framer Motion, GSAP and Lenis.',
+      'Refined responsive navigation, touch feedback and page transitions using real-device observations.'
+    ],
     stack: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion', 'GSAP'],
-    note: 'Illustrative artwork, not a captured application screen.',
+    access: 'public',
+    note: 'Cover is illustrative artwork rather than a website screenshot.',
   },
 ];
 
