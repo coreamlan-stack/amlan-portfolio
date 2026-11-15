@@ -2,6 +2,7 @@ import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { PageReveal } from '@/app/_components/page-reveal';
+import { PageShell } from '@/app/_components/page-shell';
 import { SubpageNav } from '@/app/_components/subpage-nav';
 import { caseStudies } from '@/data';
 
@@ -12,6 +13,7 @@ export const metadata = {
 
 export default function WorkPage() {
   return (
+    <PageShell>
     <main className='relative min-h-screen bg-background text-foreground'>
       <SubpageNav />
       <section className='mx-auto max-w-[1440px] px-6 pb-16 pt-36 sm:px-12 sm:pt-44 lg:px-20'>
@@ -49,5 +51,6 @@ export default function WorkPage() {
         <Link href='/about' className='group inline-flex items-center gap-3 text-lg transition-colors hover:text-primary'>More about how I work <ArrowUpRight className='transition-transform group-hover:-translate-y-1 group-hover:translate-x-1' size={20}/></Link>
       </section>
     </main>
+    </PageShell>
   );
 }
