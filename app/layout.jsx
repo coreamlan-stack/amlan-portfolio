@@ -4,6 +4,7 @@ import { Offcanvas } from '@/layout';
 import { Providers } from '@/providers';
 
 import { FluidPointer } from './_components/fluid-pointer';
+import { FrameMeter } from './_components/frame-meter';
 import { RouteFlow } from './_components/route-flow';
 import { SiteExperience } from './_layout/transition/site-experience';
 import './globals.css';
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <SiteExperience />
           <FluidPointer />
+          <FrameMeter />
           <Offcanvas />
           <RouteFlow>{children}</RouteFlow>
         </Providers>
