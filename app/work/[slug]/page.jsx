@@ -3,7 +3,7 @@ import { PageReveal } from '@/app/_components/page-reveal';
 import { SubpageNav } from '@/app/_components/subpage-nav';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
-import { caseStudies, getCaseStudy } from '@/data/case-studies';
+import { caseStudies, getCaseStudy } from '@/data';
 
 export function generateStaticParams() {
   return caseStudies.map(({ slug }) => ({ slug }));
