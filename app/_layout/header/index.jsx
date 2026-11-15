@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import { motion } from 'framer-motion';
 import { MoveDownRight } from 'lucide-react';
 
@@ -9,7 +11,70 @@ import { slideUp } from './variants';
 import AeroShards from '../../_components/aero-shards';
 import TechText from '../../_components/tech-text';
 
+const MOBILE_QUERY = '(max-width: 767px)';
+
+function getHeroQuality() {
+  const mobile = window.matchMedia(MOBILE_QUERY).matches;
+  const connection = navigator.connection || navigator.mozConnection;
+  const cores = navigator.hardwareConcurrency || 8;
+  const memory = navigator.deviceMemory || 8;
+  const constrained =
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    connection?.saveData ||
+    cores <= 4 ||
+    memory <= 4;
+
+  if (!mobile) return 'desktop';
+  return constrained ? 'mobile-lite' : 'mobile';
+}
+
+const SCENE_QUALITY = {
+  desktop: {
+    count: 900,
+    dpr: 1.5,
+    speed: 1,
+    glow: 0.35,
+    intro: true,
+    interactive: true,
+  },
+  mobile: {
+    count: 320,
+    dpr: 0.8,
+    speed: 0.42,
+    glow: 0.6,
+    intro: false,
+    interactive: false,
+  },
+  'mobile-lite': {
+    count: 150,
+    dpr: 0.6,
+    speed: 0,
+    glow: 0.5,
+    intro: false,
+    interactive: false,
+  },
+};
+
 export function Header() {
+  const [quality, setQuality] = useState(null);
+
+  useEffect(() => {
+    const updateQuality = () => setQuality(getHeroQuality());
+    const mobileMedia = window.matchMedia(MOBILE_QUERY);
+    const motionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    updateQuality();
+    mobileMedia.addEventListener('change', updateQuality);
+    motionMedia.addEventListener('change', updateQuality);
+    return () => {
+      mobileMedia.removeEventListener('change', updateQuality);
+      motionMedia.removeEventListener('change', updateQuality);
+    };
+  }, []);
+
+  const scene = quality ? SCENE_QUALITY[quality] : null;
+  const isMobile = quality?.startsWith('mobile');
+
   return (
     <motion.header
       className='relative h-screen overflow-hidden bg-background text-foreground'
@@ -17,35 +82,42 @@ export function Header() {
       initial='initial'
       animate='enter'
     >
-      <div aria-hidden='true' className='absolute inset-0 opacity-75'>
-        <AeroShards
-          shardColor='#d8ff67'
-          accentColor='#a3ff12'
-          placement='full'
-          material='glass'
-          markers='plus'
-          count={900}
-          depthOfField={0.75}
-          vignette={0.3}
-          mouseInteraction
-          pulseOnClick
-          holdToGather
-          lightMode={false}
-          shardSize={1}
-          spread={1}
-          twist={1}
-          billow={1}
-          speed={1}
-          scale={1}
-          glow={0.35}
-          grain={0.06}
-          intro
-          mouseStrength={0.6}
-          parallax={0.5}
-          paused={false}
-          dpr={1.5}
-        />
-      </div>
+      {scene && (
+        <div
+          aria-hidden='true'
+          className={`hero-scene absolute inset-0 opacity-75 ${
+            isMobile ? 'scale-[1.08] blur-[1.25px]' : ''
+          }`}
+        >
+          <AeroShards
+            shardColor='#d8ff67'
+            accentColor='#a3ff12'
+            placement='full'
+            material='glass'
+            markers='plus'
+            count={scene.count}
+            depthOfField={isMobile ? 1 : 0.75}
+            vignette={isMobile ? 0.5 : 0.3}
+            mouseInteraction={scene.interactive}
+            pulseOnClick={scene.interactive}
+            holdToGather={scene.interactive}
+            lightMode={false}
+            shardSize={isMobile ? 1.15 : 1}
+            spread={isMobile ? 1.05 : 1}
+            twist={1}
+            billow={1}
+            speed={scene.speed}
+            scale={isMobile ? 1.08 : 1}
+            glow={scene.glow}
+            grain={isMobile ? 0.03 : 0.06}
+            intro={scene.intro}
+            mouseStrength={scene.interactive ? 0.6 : 0}
+            parallax={scene.interactive ? 0.5 : 0}
+            paused={scene.speed === 0}
+            dpr={scene.dpr}
+          />
+        </div>
+      )}
       <div
         aria-hidden='true'
         className='hero-grid absolute inset-0 opacity-70'
@@ -55,8 +127,18 @@ export function Header() {
         className='absolute right-[-10vw] top-[13vh] h-[32vw] w-[32vw] rounded-full border border-primary/60 shadow-[0_0_120px_rgba(200,255,92,0.14)]'
       />
       <div className='relative h-full'>
-        <div className='absolute inset-x-0 top-[57%] h-[clamp(9rem,25vw,22rem)] -translate-y-1/2 md:left-0 md:right-[18%] md:top-[60%] md:translate-x-[-3vw]'>
-          <h1 className='h-full' aria-label='Amlan Kumar Bhowmik'>
+        <div className='absolute inset-x-6 top-[58%] -translate-y-1/2 md:left-0 md:right-[18%] md:top-[60%] md:h-[clamp(9rem,25vw,22rem)] md:translate-x-[-3vw]'>
+          <h1
+            className='text-[clamp(2.7rem,11vw,3.85rem)] font-medium leading-[0.9] tracking-[-0.055em] md:hidden'
+            aria-label='Amlan Kumar Bhowmik'
+          >
+            <span className='block'>Amlan Kumar</span>
+            <span className='block'>Bhowmik</span>
+          </h1>
+          <h1
+            className='hidden h-full md:block'
+            aria-label='Amlan Kumar Bhowmik'
+          >
             <TechText
               text='Amlan Kumar Bhowmik'
               fontWeight={600}
@@ -85,12 +167,15 @@ export function Header() {
             </ParallaxSlider>
           </h1>
         )}
-        <div className='absolute right-8 top-[55%] translate-y-20 md:right-36 md:top-[62%] md:translate-y-28'>
+        <div className='absolute inset-x-6 top-[71%] md:left-auto md:right-36 md:top-[62%] md:translate-y-28'>
           <div className='flex items-center gap-4 md:gap-6'>
-            <div className='flex size-14 shrink-0 items-center justify-center rounded-full border border-primary/80 bg-background/80 text-primary shadow-[0_0_28px_rgba(200,255,92,0.2)] backdrop-blur-sm md:size-16'>
-              <MoveDownRight size={30} strokeWidth={1.6} />
-            </div>
-            <h4 className='text-[clamp(1.35rem,2.5vw,2.75rem)] leading-tight'>
+            <MoveDownRight
+              className='shrink-0 text-primary'
+              size={30}
+              strokeWidth={1.6}
+              aria-hidden='true'
+            />
+            <h4 className='text-[clamp(1.1rem,4.5vw,1.35rem)] leading-tight md:text-[clamp(1.35rem,2.5vw,2.75rem)]'>
               <span className='block'>Software Developer</span>
               <span className='block text-primary'>&amp; UI/UX Designer</span>
             </h4>
