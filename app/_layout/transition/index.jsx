@@ -20,7 +20,7 @@ export function Transition({ children }) {
       setLoading(false);
       window.scrollTo(0, 0);
     },
-    duration: 2000,
+    duration: 1700,
     deps: [],
   });
 
