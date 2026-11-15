@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { useMotionValue, useSpring, motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 // One pointer system for desktop and mobile: a spring-following halo on mice,
 // and brief contact ripples on touch screens (no fake cursor blocking gestures).
