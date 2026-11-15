@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+<defs><radialGradient id="g"><stop stop-color="#2f4534"/><stop offset="1" stop-color="#101a1c"/></radialGradient><linearGradient id="l" x2="1" y2="1"><stop stop-color="#d8ff67"/><stop offset="1" stop-color="#6eac79"/></linearGradient></defs>
+<rect width="1000" height="1000" fill="url(#g)"/><g fill="none" stroke="#c4ff61" stroke-opacity=".15"><circle cx="500" cy="500" r="390"/><circle cx="500" cy="500" r="320"/><circle cx="500" cy="500" r="245"/><circle cx="500" cy="500" r="165"/></g>
+<path d="M210 530C285 170 750 170 790 480S665 900 415 780 185 615 320 470" fill="none" stroke="url(#l)" stroke-width="26" stroke-linecap="round"/>
+<path d="M310 625C460 385 560 410 700 260" fill="none" stroke="#e7f6d7" stroke-width="3" stroke-dasharray="12 18"/>
+<circle cx="210" cy="530" r="29" fill="#d8ff67"/><circle cx="790" cy="480" r="29" fill="#d8ff67"/><circle cx="415" cy="780" r="18" fill="#a2c8a7"/>
+<rect x="328" y="350" width="350" height="300" rx="28" fill="#142321" stroke="#8cae8a" stroke-opacity=".5" stroke-width="2"/>
+<path d="M380 427l-44 65 44 65m248-130l44 65-44 65M550 406l-95 183" fill="none" stroke="#d8ff67" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="80" y="92" fill="#d8ff67" font-family="Arial,sans-serif" font-size="19" letter-spacing="6">CRAFT / SYSTEMS</text>
+<text x="700" y="935" fill="#deeddf" font-family="Arial,sans-serif" font-size="19" letter-spacing="4">DESIGN + CODE</text>
+</svg>
