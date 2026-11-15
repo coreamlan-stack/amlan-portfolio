@@ -178,6 +178,7 @@ export function FluidProjectCover({ src, alt, priority = false }) {
       if (ready && time - previousFrame >= 28) {
         previousFrame = time;
         draw(time);
+        if (canvas.style.opacity !== '0.9') canvas.style.opacity = '0.9';
       }
       loopRef.current = requestAnimationFrame(render);
     };
@@ -226,7 +227,7 @@ export function FluidProjectCover({ src, alt, priority = false }) {
         className='size-full object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-[1.045] motion-safe:group-active:scale-[1.018]'
       />
       {active && supported && (
-        <canvas ref={canvasRef} aria-hidden='true' className='pointer-events-none absolute inset-0 size-full opacity-90' />
+        <canvas ref={canvasRef} aria-hidden='true' className='pointer-events-none absolute inset-0 size-full opacity-0 transition-opacity duration-300' />
       )}
       <div aria-hidden='true' className='pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_65%_25%,rgba(216,255,103,.07),transparent_42%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-active:opacity-70' />
     </div>
