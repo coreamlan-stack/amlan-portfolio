@@ -1,7 +1,7 @@
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 
+import { FluidProjectCover } from '@/app/_components/fluid-project-cover';
 import { PageReveal } from '@/app/_components/page-reveal';
 import { PageShell } from '@/app/_components/page-shell';
 import { SubpageNav } from '@/app/_components/subpage-nav';
@@ -50,15 +50,7 @@ export default function WorkPage() {
             <PageReveal key={project.slug} delay={Math.min(index % 2 * 0.08, 0.12)}>
               <Link href={`/work/${project.slug}`} className='group block outline-offset-8 focus-visible:outline-2 focus-visible:outline-primary'>
                 <div className='relative aspect-[5/4] overflow-hidden rounded-3xl border border-white/10 bg-[#182024]'>
-                  <Image
-                    src={project.cover}
-                    alt={project.alt}
-                    width={1200}
-                    height={960}
-                    unoptimized
-                    priority={index === 0}
-                    className='size-full object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-[1.045] motion-safe:group-active:scale-[1.018]'
-                  />
+                  <FluidProjectCover src={project.cover} alt={project.alt} priority={index === 0} />
                   <span className='absolute left-4 top-4 rounded-full border border-white/20 bg-[#121a19]/80 px-3 py-2 text-[11px] tracking-wide text-white backdrop-blur-sm sm:left-6 sm:top-6'>
                     {accessLabels[project.access] || 'Project'}
                   </span>
