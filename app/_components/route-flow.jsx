@@ -25,8 +25,8 @@ export function RouteFlow({ children }) {
       <AnimatePresence mode='popLayout' initial={false}>
         <motion.div
           key={pathname}
-          initial={reduceMotion ? false : { opacity: 0, y: 28, filter: 'blur(4px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
           exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -14 }}
           transition={
             reduceMotion
