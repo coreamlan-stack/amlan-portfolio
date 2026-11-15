@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { thumbnailOptions } from '@/data';
@@ -42,7 +43,7 @@ export function ThumbnailList({
           passHref
         >
           <div className='mb-4 w-full overflow-hidden rounded-2xl border border-white/10 lg:hidden'>
-            <img src={cover} alt={alt} loading='lazy' className='aspect-[5/3] w-full object-cover transition-transform duration-700 motion-safe:group-active:scale-[1.03]' />
+            <Image src={cover} alt={alt} width={1200} height={960} unoptimized className='aspect-[5/3] w-full object-cover transition-transform duration-700 motion-safe:group-active:scale-[1.03]' />
           </div>
           <h4
             style={{
