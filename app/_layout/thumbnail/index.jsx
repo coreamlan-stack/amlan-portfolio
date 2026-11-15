@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 
+import { caseStudies } from '@/data';
 import { useFollowPointer } from '@/hooks';
 
 import {
@@ -62,7 +63,7 @@ export function Thumbnail() {
           View
         </ThumbnailCursorLabel>
         <ThumbnailAction>
-          View work<sup className='text-muted-foreground'>02</sup>
+          View work<sup className='text-muted-foreground'>{String(caseStudies.length).padStart(2, '0')}</sup>
         </ThumbnailAction>
       </div>
     </section>
