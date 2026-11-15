@@ -29,17 +29,12 @@ export const ThumbnailModal = forwardRef(function ThumbnailModal(
           transition: 'top 0.5s cubic-bezier(0.76, 0, 0.24, 1)',
         }}
       >
-        {thumbnailOptions.map(({ title, accent }, itemIndex) => (
+        {thumbnailOptions.map(({ title, cover, alt }, itemIndex) => (
           <Center
             key={title}
-            className={`size-full bg-gradient-to-br ${accent}`}
+            className='size-full bg-[#182024]'
           >
-            <div className='flex h-[68%] w-[68%] flex-col justify-between border border-white/60 p-5 text-zinc-950'>
-              <span className='text-xs uppercase tracking-[0.2em]'>
-                0{itemIndex + 1}
-              </span>
-              <span className='text-2xl leading-none'>{title}</span>
-            </div>
+            <img src={cover} alt={alt} className='h-full w-full object-cover' />
           </Center>
         ))}
       </div>
