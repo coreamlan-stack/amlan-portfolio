@@ -1,53 +1,27 @@
 'use client';
 
-import { useRef } from 'react';
-
 import { motion } from 'framer-motion';
 
-import { MagneticButton } from '@/components';
-import { useOffcanvasToggle } from '@/hooks';
 import { cn } from '@/utils';
 
 import classes from './index.module.css';
 
-/**
- * @param {Object} props
- * @param {boolean} props.isOpen
- * @param {import('react').Dispatch<SetStateAction<boolean>>} props.handleOpen
- */
+/** @param {{ isOpen: boolean, handleOpen: (next: boolean) => void }} props */
 export function OffcanvasToggle({ isOpen, handleOpen }) {
-  /** @type {import('react').MutableRefObject<HTMLDivElement>} */
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useOffcanvasToggle({
-    element: containerRef,
-    callback: latest => latest <= 1 && handleOpen(false),
-  });
-
   return (
-    <motion.div
-      ref={containerRef}
+    <motion.button
+      type='button'
       className={classes.wrapper}
       initial={false}
-      transition={{
-        duration: 1,
-        ease: [0.76, 0, 0.24, 1],
-      }}
-      style={{ scale: scrollYProgress }}
+      animate={{ scale: isOpen ? 0.96 : 1 }}
+      whileTap={{ scale: 0.9 }}
+      transition={{ type: 'spring', stiffness: 380, damping: 24 }}
+      aria-label={isOpen ? 'Close menu' : 'Open menu'}
+      aria-expanded={isOpen}
+      aria-controls='portfolio-menu'
+      onClick={() => handleOpen(!isOpen)}
     >
-      <MagneticButton
-        size='md'
-        variant='ghost'
-        className='!h-16 !w-16 !p-0 border border-solid border-muted-foreground sm:!h-auto sm:!w-auto sm:!px-8 sm:!py-10'
-        aria-label={isOpen ? 'Close menu' : 'Open menu'}
-        aria-expanded={isOpen}
-        aria-controls='portfolio-menu'
-        onClick={() => handleOpen(!isOpen)}
-      >
-        <span
-          className={cn([classes.burger], [isOpen && classes.burgerActive])}
-        />
-        <span className='sr-only'>{isOpen ? 'Close menu' : 'Open menu'}</span>
-      </MagneticButton>
-    </motion.div>
+      <span className={cn(classes.burger, isOpen && classes.burgerActive)} aria-hidden='true' />
+    </motion.button>
   );
 }
