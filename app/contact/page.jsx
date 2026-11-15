@@ -1,4 +1,4 @@
-import { ArrowUpRight, Github, Mail } from 'lucide-react';
+import { ArrowUpRight, Github } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata = {
@@ -17,7 +17,6 @@ export default function ContactPage() {
           <a href='https://github.com/coreamlan-stack' target='_blank' rel='noopener noreferrer' className='group flex items-center justify-between gap-4 border-b border-white/15 py-9 text-2xl transition-colors hover:text-primary sm:text-4xl'><span className='flex items-center gap-5'><Github size={27}/> GitHub</span><ArrowUpRight className='transition-transform group-hover:-translate-y-1 group-hover:translate-x-1'/></a>
           <Link href='/work' className='group flex items-center justify-between gap-4 border-b border-white/15 py-9 text-2xl transition-colors hover:text-primary sm:text-4xl'><span>Explore my work</span><ArrowUpRight className='transition-transform group-hover:-translate-y-1 group-hover:translate-x-1'/></Link>
         </div>
-        <p className='mt-12 text-sm text-muted-foreground'>Direct email details can be added here when a public contact address is available.</p>
       </div>
     </main>
   );
