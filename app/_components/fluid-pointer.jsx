@@ -20,6 +20,8 @@ export function FluidPointer() {
   const timers = useRef(new Set());
   const rippleId = useRef(0);
   const lastTouchTrail = useRef(0);
+  const touchStart = useRef(null);
+  const lastTouchPoint = useRef(null);
 
   useEffect(() => {
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -32,21 +34,33 @@ export function FluidPointer() {
     finePointer.addEventListener('change', update);
     reducedMotion.addEventListener('change', update);
 
-    const addRipple = (event, trail = false) => {
+    const addEffect = (point, type = 'tap', angle = 0) => {
       const id = ++rippleId.current;
-      setRipples(previous => [...previous.slice(-5), { id, x: event.clientX, y: event.clientY, trail }]);
+      setRipples(previous => [
+        ...previous.slice(-9),
+        { id, x: point.clientX, y: point.clientY, type, angle },
+      ]);
       const timeout = window.setTimeout(() => {
-        setRipples(previous => previous.filter(ripple => ripple.id !== id));
+        setRipples(previous => previous.filter(effect => effect.id !== id));
         timers.current.delete(timeout);
-      }, trail ? 440 : 650);
+      }, type === 'trail' ? 380 : 680);
       timers.current.add(timeout);
     };
+
     const onMove = event => {
       if (event.pointerType === 'touch' && event.isPrimary && !reducedMotion.matches) {
+        const start = touchStart.current;
+        if (!start || start.id !== event.pointerId) return;
+        const distance = Math.hypot(event.clientX - start.x, event.clientY - start.y);
+        if (distance > 12) start.moved = true;
+        if (!start.moved) return;
         const now = performance.now();
-        if (now - lastTouchTrail.current > 85) {
+        if (now - lastTouchTrail.current >= 55) {
+          const last = lastTouchPoint.current || { x: start.x, y: start.y };
+          const angle = Math.atan2(event.clientY - last.y, event.clientX - last.x) * 180 / Math.PI;
           lastTouchTrail.current = now;
-          addRipple(event, true);
+          addEffect(event, 'trail', angle);
+          lastTouchPoint.current = { x: event.clientX, y: event.clientY };
         }
         return;
       }
@@ -63,12 +77,33 @@ export function FluidPointer() {
     const onLeave = () => setVisible(false);
     const onDown = event => {
       if (event.pointerType !== 'touch' || !event.isPrimary || reducedMotion.matches) return;
+      touchStart.current = {
+        id: event.pointerId,
+        x: event.clientX,
+        y: event.clientY,
+        moved: false,
+      };
+      lastTouchPoint.current = { x: event.clientX, y: event.clientY };
       lastTouchTrail.current = performance.now();
-      addRipple(event);
+    };
+    const onUp = event => {
+      const start = touchStart.current;
+      if (event.pointerType !== 'touch' || !start || start.id !== event.pointerId) return;
+      if (!start.moved && Math.hypot(event.clientX - start.x, event.clientY - start.y) < 12 && !reducedMotion.matches) {
+        addEffect(event, 'tap');
+      }
+      touchStart.current = null;
+      lastTouchPoint.current = null;
+    };
+    const onCancel = () => {
+      touchStart.current = null;
+      lastTouchPoint.current = null;
     };
 
     document.addEventListener('pointermove', onMove, { passive: true });
     document.addEventListener('pointerdown', onDown, { passive: true });
+    document.addEventListener('pointerup', onUp, { passive: true });
+    document.addEventListener('pointercancel', onCancel, { passive: true });
     document.documentElement.addEventListener('mouseleave', onLeave);
     const pendingTimers = timers.current;
     return () => {
@@ -76,6 +111,8 @@ export function FluidPointer() {
       reducedMotion.removeEventListener('change', update);
       document.removeEventListener('pointermove', onMove);
       document.removeEventListener('pointerdown', onDown);
+      document.removeEventListener('pointerup', onUp);
+      document.removeEventListener('pointercancel', onCancel);
       document.documentElement.removeEventListener('mouseleave', onLeave);
       pendingTimers.forEach(window.clearTimeout);
       pendingTimers.clear();
@@ -111,8 +148,8 @@ export function FluidPointer() {
         {ripples.map(ripple => (
           <span
             key={ripple.id}
-            className={ripple.trail ? 'fluid-touch-ripple fluid-touch-trail' : 'fluid-touch-ripple'}
-            style={{ left: ripple.x, top: ripple.y }}
+            className={ripple.type === 'trail' ? 'fluid-touch-streak' : 'fluid-touch-ripple'}
+            style={{ left: ripple.x, top: ripple.y, '--trail-angle': `${ripple.angle}deg` }}
           />
         ))}
       </div>
