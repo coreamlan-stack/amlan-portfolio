@@ -55,7 +55,7 @@ export function Header() {
         className='absolute right-[-10vw] top-[13vh] h-[32vw] w-[32vw] rounded-full border border-primary/60 shadow-[0_0_120px_rgba(200,255,92,0.14)]'
       />
       <div className='relative h-full'>
-        <div className='absolute inset-x-0 top-[53%] h-[clamp(9rem,25vw,22rem)] -translate-y-1/2'>
+        <div className='absolute inset-x-0 top-[57%] h-[clamp(9rem,25vw,22rem)] -translate-y-1/2 md:left-0 md:right-[18%] md:top-[60%] md:translate-x-[-3vw]'>
           <h1 className='h-full' aria-label='Amlan Kumar Bhowmik'>
             <TechText
               text='Amlan Kumar Bhowmik'
@@ -85,10 +85,10 @@ export function Header() {
             </ParallaxSlider>
           </h1>
         )}
-        <div className='absolute right-8 top-[55%] md:right-36 md:top-[62%]'>
-          <div>
-            <div className='mb-4 md:mb-12'>
-              <MoveDownRight size={28} strokeWidth={1.25} />
+        <div className='absolute right-8 top-[55%] translate-y-20 md:right-36 md:top-[62%] md:translate-y-28'>
+          <div className='flex items-center gap-4 md:gap-6'>
+            <div className='flex size-14 shrink-0 items-center justify-center rounded-full border border-primary/80 bg-background/80 text-primary shadow-[0_0_28px_rgba(200,255,92,0.2)] backdrop-blur-sm md:size-16'>
+              <MoveDownRight size={30} strokeWidth={1.6} />
             </div>
             <h4 className='text-[clamp(1.35rem,2.5vw,2.75rem)] leading-tight'>
               <span className='block'>Software Developer</span>
