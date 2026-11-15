@@ -16,7 +16,7 @@ export function Contact() {
   return (
     <motion.footer
       ref={containerRef}
-      className='relative isolate overflow-hidden bg-[#10161b] text-[#f5f3eb] max-md:!transform-none'
+      className='relative isolate overflow-hidden bg-[#10161b] text-[#f5f3eb]'
       style={{ y: transformY }}
     >
       <div
