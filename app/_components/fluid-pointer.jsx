@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
-// One pointer system for desktop and mobile: a spring-following halo on mice,
-// and brief contact ripples on touch screens (no fake cursor blocking gestures).
+// Mouse: spring-following cursor. Touch: a single, soft liquid lens that
+// stretches as it follows the finger; a separate splash only on a genuine tap.
 export function FluidPointer() {
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
@@ -13,57 +13,77 @@ export function FluidPointer() {
   const springY = useSpring(y, { stiffness: 145, damping: 22, mass: 0.65 });
   const dotX = useSpring(x, { stiffness: 620, damping: 38, mass: 0.28 });
   const dotY = useSpring(y, { stiffness: 620, damping: 38, mass: 0.28 });
+  const touchX = useMotionValue(-100);
+  const touchY = useMotionValue(-100);
+  const fluidX = useSpring(touchX, { stiffness: 235, damping: 27, mass: 0.5 });
+  const fluidY = useSpring(touchY, { stiffness: 235, damping: 27, mass: 0.5 });
   const [enabled, setEnabled] = useState(false);
   const [visible, setVisible] = useState(false);
   const [interactive, setInteractive] = useState(false);
+  const [touchActive, setTouchActive] = useState(false);
+  const [touchMoving, setTouchMoving] = useState(false);
+  const [direction, setDirection] = useState(0);
+  const [stretch, setStretch] = useState(1);
   const [ripples, setRipples] = useState([]);
+  const touchStart = useRef(null);
+  const lastMotion = useRef(null);
+  const lastShapeUpdate = useRef(0);
   const timers = useRef(new Set());
   const rippleId = useRef(0);
-  const lastTouchTrail = useRef(0);
-  const touchStart = useRef(null);
-  const lastTouchPoint = useRef(null);
 
   useEffect(() => {
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const update = () => {
       setEnabled(finePointer.matches && !reducedMotion.matches);
-      if (reducedMotion.matches) setRipples([]);
+      if (reducedMotion.matches) {
+        setRipples([]);
+        setTouchActive(false);
+      }
     };
     update();
     finePointer.addEventListener('change', update);
     reducedMotion.addEventListener('change', update);
 
-    const addEffect = (point, type = 'tap', angle = 0) => {
+    const addTap = event => {
       const id = ++rippleId.current;
-      setRipples(previous => [
-        ...previous.slice(-9),
-        { id, x: point.clientX, y: point.clientY, type, angle },
-      ]);
+      setRipples(previous => [...previous.slice(-2), { id, x: event.clientX, y: event.clientY }]);
       const timeout = window.setTimeout(() => {
-        setRipples(previous => previous.filter(effect => effect.id !== id));
+        setRipples(previous => previous.filter(ripple => ripple.id !== id));
         timers.current.delete(timeout);
-      }, type === 'trail' ? 380 : 680);
+      }, 650);
       timers.current.add(timeout);
     };
 
     const onMove = event => {
-      if (event.pointerType === 'touch' && event.isPrimary && !reducedMotion.matches) {
+      if (event.pointerType === 'touch') {
         const start = touchStart.current;
-        if (!start || start.id !== event.pointerId) return;
+        if (!event.isPrimary || !start || start.id !== event.pointerId || reducedMotion.matches) return;
         const distance = Math.hypot(event.clientX - start.x, event.clientY - start.y);
-        if (distance > 12) start.moved = true;
-        if (!start.moved) return;
-        const now = performance.now();
-        if (now - lastTouchTrail.current >= 55) {
-          const last = lastTouchPoint.current || { x: start.x, y: start.y };
-          const angle = Math.atan2(event.clientY - last.y, event.clientX - last.x) * 180 / Math.PI;
-          lastTouchTrail.current = now;
-          addEffect(event, 'trail', angle);
-          lastTouchPoint.current = { x: event.clientX, y: event.clientY };
+        if (distance > 11) {
+          start.moved = true;
+          setTouchMoving(true);
         }
+        if (!start.moved) return;
+        touchX.set(event.clientX);
+        touchY.set(event.clientY);
+        const now = performance.now();
+        const previous = lastMotion.current;
+        if (previous && now - lastShapeUpdate.current > 35) {
+          const dx = event.clientX - previous.x;
+          const dy = event.clientY - previous.y;
+          const elapsed = Math.max(now - previous.time, 8);
+          const speed = Math.hypot(dx, dy) / elapsed;
+          if (Math.hypot(dx, dy) > 2) {
+            setDirection(Math.atan2(dy, dx) * 180 / Math.PI);
+            setStretch(Math.min(1.8, 1 + speed * 0.32));
+          }
+          lastShapeUpdate.current = now;
+        }
+        lastMotion.current = { x: event.clientX, y: event.clientY, time: now };
         return;
       }
+
       if (event.pointerType !== 'mouse' || !finePointer.matches || reducedMotion.matches) return;
       x.set(event.clientX);
       y.set(event.clientY);
@@ -74,7 +94,7 @@ export function FluidPointer() {
         Boolean(target.closest('a, button, [role="button"], input, textarea, select'));
       setInteractive(previous => previous === isInteractive ? previous : isInteractive);
     };
-    const onLeave = () => setVisible(false);
+
     const onDown = event => {
       if (event.pointerType !== 'touch' || !event.isPrimary || reducedMotion.matches) return;
       touchStart.current = {
@@ -83,21 +103,41 @@ export function FluidPointer() {
         y: event.clientY,
         moved: false,
       };
-      lastTouchPoint.current = { x: event.clientX, y: event.clientY };
-      lastTouchTrail.current = performance.now();
+      touchX.set(event.clientX);
+      touchY.set(event.clientY);
+      lastMotion.current = { x: event.clientX, y: event.clientY, time: performance.now() };
+      setStretch(1);
+      setTouchMoving(false);
+      setTouchActive(true);
     };
-    const onUp = event => {
+
+    const finishTouch = (event, cancelled = false) => {
       const start = touchStart.current;
-      if (event.pointerType !== 'touch' || !start || start.id !== event.pointerId) return;
-      if (!start.moved && Math.hypot(event.clientX - start.x, event.clientY - start.y) < 12 && !reducedMotion.matches) {
-        addEffect(event, 'tap');
-      }
+      if (!start || (event && start.id !== event.pointerId)) return;
+      if (
+        !cancelled &&
+        !start.moved &&
+        Math.hypot(event.clientX - start.x, event.clientY - start.y) < 11 &&
+        !reducedMotion.matches
+      ) addTap(event);
       touchStart.current = null;
-      lastTouchPoint.current = null;
+      lastMotion.current = null;
+      setTouchActive(false);
+      setTouchMoving(false);
+      setStretch(1);
     };
-    const onCancel = () => {
+
+    const onUp = event => {
+      if (event.pointerType === 'touch') finishTouch(event);
+    };
+    const onCancel = event => {
+      if (event.pointerType === 'touch') finishTouch(event, true);
+    };
+    const onLeave = () => setVisible(false);
+    const onBlur = () => {
+      setTouchActive(false);
+      setTouchMoving(false);
       touchStart.current = null;
-      lastTouchPoint.current = null;
     };
 
     document.addEventListener('pointermove', onMove, { passive: true });
@@ -105,6 +145,7 @@ export function FluidPointer() {
     document.addEventListener('pointerup', onUp, { passive: true });
     document.addEventListener('pointercancel', onCancel, { passive: true });
     document.documentElement.addEventListener('mouseleave', onLeave);
+    window.addEventListener('blur', onBlur);
     const pendingTimers = timers.current;
     return () => {
       finePointer.removeEventListener('change', update);
@@ -114,19 +155,17 @@ export function FluidPointer() {
       document.removeEventListener('pointerup', onUp);
       document.removeEventListener('pointercancel', onCancel);
       document.documentElement.removeEventListener('mouseleave', onLeave);
+      window.removeEventListener('blur', onBlur);
       pendingTimers.forEach(window.clearTimeout);
       pendingTimers.clear();
     };
-  }, [x, y]);
+  }, [x, y, touchX, touchY]);
 
   return (
     <>
       {enabled && (
         <div aria-hidden='true' className='pointer-events-none fixed inset-0 z-[70] overflow-hidden'>
-          <motion.div
-            className='absolute left-0 top-0'
-            style={{ x: springX, y: springY }}
-          >
+          <motion.div className='absolute left-0 top-0' style={{ x: springX, y: springY }}>
             <motion.div
               className='fluid-cursor-halo'
               initial={false}
@@ -145,11 +184,29 @@ export function FluidPointer() {
         </div>
       )}
       <div aria-hidden='true' className='pointer-events-none fixed inset-0 z-[70] overflow-hidden'>
+        <motion.div className='absolute left-0 top-0' style={{ x: fluidX, y: fluidY }}>
+          <motion.div
+            className='fluid-touch-lens'
+            initial={false}
+            animate={{
+              opacity: touchActive && touchMoving ? 1 : 0,
+              scaleX: touchActive ? stretch : 0.65,
+              scaleY: touchActive ? 1 / Math.sqrt(stretch) : 0.65,
+              rotate: direction,
+            }}
+            transition={{
+              opacity: { duration: 0.22 },
+              scaleX: { type: 'spring', stiffness: 210, damping: 25 },
+              scaleY: { type: 'spring', stiffness: 210, damping: 25 },
+              rotate: { duration: 0.12 },
+            }}
+          />
+        </motion.div>
         {ripples.map(ripple => (
           <span
             key={ripple.id}
-            className={ripple.type === 'trail' ? 'fluid-touch-streak' : 'fluid-touch-ripple'}
-            style={{ left: ripple.x, top: ripple.y, '--trail-angle': `${ripple.angle}deg` }}
+            className='fluid-touch-ripple'
+            style={{ left: ripple.x, top: ripple.y }}
           />
         ))}
       </div>
