@@ -16,7 +16,7 @@ export function Contact() {
   return (
     <motion.footer
       ref={containerRef}
-      className='relative isolate overflow-hidden bg-[#10161b] text-[#f5f3eb]'
+      className='relative isolate overflow-hidden bg-[#10161b] text-[#f5f3eb] max-md:!transform-none'
       style={{ y: transformY }}
     >
       <div
@@ -29,7 +29,7 @@ export function Contact() {
       />
       <div
         className='relative'
-        style={{ paddingBlock: 'clamp(4.5rem, 14vh, 9rem)' }}
+        style={{ paddingBlock: 'clamp(3.25rem, 9vh, 9rem)' }}
       >
         <UserDetails transformX={transformX} />
         <SocialInfo />
