@@ -2,47 +2,16 @@
 
 import { motion } from 'framer-motion';
 
+// Decorative SVG stays inside the panel so it never spills across the page.
 export function OffcanvasBackdrop() {
-  const windowHeight = window.innerHeight;
-
-  const initialPath = `M100 0 L200 0 L200 ${windowHeight} L100 ${windowHeight} Q-100 ${
-    windowHeight / 2
-  } 100 0`;
-  const targetPath = `M100 0 L200 0 L200 ${windowHeight} L100 ${windowHeight} Q100 ${
-    windowHeight / 2
-  } 100 0`;
-
-  /** @type {import('framer-motion').Variants} */
-  const curve = {
-    initial: {
-      d: initialPath,
-    },
-    enter: {
-      d: targetPath,
-      transition: {
-        duration: 1,
-        ease: [0.76, 0, 0.24, 1],
-        delay: 0.1,
-      },
-    },
-    exit: {
-      d: initialPath,
-      transition: {
-        duration: 0.8,
-        ease: [0.76, 0, 0.24, 1],
-        delay: -0.2,
-      },
-    },
-  };
-
   return (
-    <motion.svg className='pointer-events-none absolute right-[600px] top-0 hidden h-full w-24 fill-foreground stroke-none sm:block'>
-      <motion.path
-        variants={curve}
-        initial='initial'
-        animate='enter'
-        exit='exit'
-      />
-    </motion.svg>
+    <motion.div
+      aria-hidden='true'
+      className='pointer-events-none absolute -right-24 top-1/3 size-64 rounded-full border border-background/15 sm:size-96'
+      initial={{ scale: 0.85, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0.85, opacity: 0 }}
+      transition={{ type: 'spring', stiffness: 120, damping: 23 }}
+    />
   );
 }
