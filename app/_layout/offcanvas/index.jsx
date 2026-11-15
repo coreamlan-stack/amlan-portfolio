@@ -18,7 +18,7 @@ export function Offcanvas() {
   return (
     <>
       <AnimatePresence mode='wait'>
-        {isOpen ? <OffcanvasBody /> : null}
+        {isOpen ? <OffcanvasBody onClose={() => setOpen(false)} /> : null}
       </AnimatePresence>
       <OffcanvasToggle isOpen={isOpen} handleOpen={setOpen} />
     </>
