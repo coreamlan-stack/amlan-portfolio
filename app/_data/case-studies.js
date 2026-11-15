@@ -30,13 +30,13 @@ export const caseStudies = [
     year: 'In development',
     cover: '/projects/saathi.svg',
     alt: 'Illustrative mobile app composition, not a screenshot of Saathi',
-    summary: 'An independent Flutter mobile project exploring simpler personal document management.',
-    overview: 'Saathi is an Android-first Flutter project. Its direction has evolved from exploring service discovery and useful links into a document-focused utility, with an emphasis on an offline-first experience.',
-    challenge: 'Personal document tools should feel approachable while handling files and potentially sensitive information carefully.',
+    summary: 'A Flutter mobile application project focused on useful, accessible experiences on Android.',
+    overview: 'Saathi is a Flutter-based mobile project. This case study focuses on the mobile UI and application structure; project-specific features will be documented once the public description and screenshots are finalized.',
+    challenge: 'Mobile apps need clear navigation, responsive interfaces and deliberate handling of user information.',
     approach: [
       'Developed an Android-first application in Flutter and Dart, with testing on an Android device.',
-      'Explored onboarding, navigation, search and structured mobile information flows.',
-      'Planned document-focused capabilities such as organization, scanning, reminders and offline access; these are product directions, not claims that everything has shipped.'
+      'Worked on navigation, interface structure and mobile UI exploration.',
+      'Kept this public summary high-level until verified feature details and screenshots are ready.'
     ],
     stack: ['Flutter', 'Dart', 'Android', 'Mobile UI/UX'],
     access: 'independent',
