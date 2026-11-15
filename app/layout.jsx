@@ -2,6 +2,7 @@ import { rootMetadata } from '@/config';
 import { neue_montreal } from '@/fonts';
 import { Offcanvas } from '@/layout';
 import { Providers } from '@/providers';
+
 import { SiteExperience } from './_layout/transition/site-experience';
 import './globals.css';
 
