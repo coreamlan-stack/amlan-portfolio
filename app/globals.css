@@ -60,9 +60,9 @@
 
 /* Route sweep: a curved, translucent edge, rather than a full-screen loader. */
 .liquid-route-sweep {
-  background: linear-gradient(180deg, rgba(216, 255, 103, 0.12), rgba(32, 53, 39, 0.93) 35%, #101a1b 94%);
+  background: linear-gradient(180deg, rgba(216, 255, 103, 0.08), rgba(30, 53, 41, 0.82) 35%, rgba(16, 26, 27, 0.95) 94%);
   border-radius: 0 0 46% 46% / 0 0 10% 10%;
-  box-shadow: 0 18px 80px rgba(216, 255, 103, 0.1);
+  box-shadow: 0 14px 36px rgba(216, 255, 103, 0.06);
   will-change: transform;
 }
 
