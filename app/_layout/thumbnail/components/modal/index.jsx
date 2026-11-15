@@ -3,6 +3,7 @@
 import { forwardRef } from 'react';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 import { Center } from '@/components';
 import { thumbnailOptions } from '@/data';
@@ -29,12 +30,12 @@ export const ThumbnailModal = forwardRef(function ThumbnailModal(
           transition: 'top 0.5s cubic-bezier(0.76, 0, 0.24, 1)',
         }}
       >
-        {thumbnailOptions.map(({ title, cover, alt }, itemIndex) => (
+        {thumbnailOptions.map(({ title, cover, alt }) => (
           <Center
             key={title}
             className='size-full bg-[#182024]'
           >
-            <img src={cover} alt={alt} className='h-full w-full object-cover' />
+            <Image src={cover} alt={alt} width={1200} height={960} unoptimized className='size-full object-cover' />
           </Center>
         ))}
       </div>
