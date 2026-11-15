@@ -109,38 +109,21 @@
   }
 }
 
-/* Low-cost touch trail: small, translucent rings during finger movement.
-   Always pointer-events:none so scrolling and taps stay native. */
-.fluid-touch-ripple.fluid-touch-trail {
-  width: 20px;
-  height: 20px;
-  border-color: rgba(216, 255, 103, 0.5);
-  background: rgba(216, 255, 103, 0.05);
-  animation: touch-trail 440ms ease-out forwards;
-}
-
-@keyframes touch-trail {
-  0% { opacity: 0.55; transform: translate(-50%, -50%) scale(0.4); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(2.4); }
-}
-
-/* Sliding uses a directional, fading streak—not the tap's expanding splash. */
-.fluid-touch-streak {
+/* A single continuous lens follows touch movement. No repeating dots or streaks. */
+.fluid-touch-lens {
   position: absolute;
+  width: 76px;
+  height: 50px;
+  border-radius: 50%;
   pointer-events: none;
-  width: 32px;
-  height: 10px;
-  border-radius: 999px;
-  background: radial-gradient(ellipse, rgba(216,255,103,.34) 0%, rgba(216,255,103,.12) 43%, transparent 76%);
-  transform: translate(-50%, -50%) rotate(var(--trail-angle)) scale(.85);
-  animation: fluid-streak-fade 380ms ease-out forwards;
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(ellipse at 42% 36%, rgba(255,255,255,.16), transparent 38%),
+    radial-gradient(ellipse, rgba(216,255,103,.18) 0%, rgba(156,211,124,.08) 40%, transparent 75%);
+  border: 1px solid rgba(216,255,103,.22);
+  box-shadow: inset 0 0 15px rgba(255,255,255,.045), 0 0 22px rgba(216,255,103,.07);
+  will-change: transform, opacity;
 }
-
-@keyframes fluid-streak-fade {
-  0% { opacity: .8; transform: translate(-50%, -50%) rotate(var(--trail-angle)) scale(.85); }
-  100% { opacity: 0; transform: translate(-50%, -50%) rotate(var(--trail-angle)) scale(1.6); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .fluid-touch-streak { animation: none !important; display: none; }
+  .fluid-touch-lens { display: none; }
 }
