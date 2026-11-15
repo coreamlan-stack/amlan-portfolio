@@ -62,7 +62,7 @@ export function Thumbnail() {
           View
         </ThumbnailCursorLabel>
         <ThumbnailAction>
-          View work<sup className='text-muted-foreground'>04</sup>
+          View work<sup className='text-muted-foreground'>02</sup>
         </ThumbnailAction>
       </div>
     </section>
