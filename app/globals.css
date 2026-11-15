@@ -27,12 +27,6 @@
     outline-offset: 4px;
   }
 
-  .hero-grid {
-    background-image: linear-gradient(to right, rgb(235 255 175 / 0.09) 1px, transparent 1px), linear-gradient(to bottom, rgb(235 255 175 / 0.09) 1px, transparent 1px);
-    background-size: 64px 64px;
-    mask-image: linear-gradient(to bottom, black, transparent 75%);
-  }
-
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   }

@@ -120,10 +120,6 @@ export function Header() {
       )}
       <div
         aria-hidden='true'
-        className='hero-grid absolute inset-0 opacity-70'
-      />
-      <div
-        aria-hidden='true'
         className='absolute right-[-10vw] top-[13vh] h-[32vw] w-[32vw] rounded-full border border-primary/60 shadow-[0_0_120px_rgba(200,255,92,0.14)]'
       />
       <div className='relative h-full'>
