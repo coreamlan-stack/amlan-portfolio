@@ -42,12 +42,12 @@ export function useFollowPointer({ modal, cursor, label }) {
 
   /** @type {(x: number, y: number) => void} */
   const moveItems = useCallback((x, y) => {
-    xMoveModal.current(x);
-    yMoveModal.current(y);
-    xMoveCursor.current(x);
-    yMoveCursor.current(y);
-    xMoveLabel.current(x);
-    yMoveLabel.current(y);
+    xMoveModal.current?.(x);
+    yMoveModal.current?.(y);
+    xMoveCursor.current?.(x);
+    yMoveCursor.current?.(y);
+    xMoveLabel.current?.(x);
+    yMoveLabel.current?.(y);
   }, []);
 
   useEffect(() => {
