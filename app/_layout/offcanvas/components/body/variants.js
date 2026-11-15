@@ -1,14 +1,12 @@
 /** @type {import('framer-motion').Variants} */
 export const slideLeft = {
-  initial: { x: '110%', opacity: 0.92 },
+  initial: { opacity: 0 },
   enter: {
-    x: '0%',
     opacity: 1,
-    transition: { type: 'spring', stiffness: 115, damping: 22, mass: 1 },
+    transition: { duration: 0.28, ease: 'easeOut' },
   },
   exit: {
-    x: '110%',
-    opacity: 0.95,
-    transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+    opacity: 0,
+    transition: { duration: 0.28, ease: 'easeIn' },
   },
 };
