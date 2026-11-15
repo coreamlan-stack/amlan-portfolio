@@ -9,6 +9,9 @@ export function useMagnetic(element) {
   /** @type {import('react').PointerEventHandler<HTMLButtonElement>} */
   const handleMagneticMove = useCallback(
     event => {
+      // Touch scrolling must never move buttons away from their layout positions.
+      if (event.pointerType !== 'mouse') return;
+      if (typeof window !== 'undefined' && !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
       const { clientX, clientY } = event;
       const { width, height, left, top } =
         element.current.getBoundingClientRect();
