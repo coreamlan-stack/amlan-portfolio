@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+
 import { AnimatePresence } from 'framer-motion';
 
 import { useLenis } from '@/hooks';
+
 import { Preloader } from './preloader';
 
 // The root layout persists during client-side navigation, so this introduction
