@@ -1,49 +1,60 @@
 .wrapper {
   position: fixed;
-  top: 0;
-  right: 0;
-  margin: theme(margin.6);
-  z-index: 50;
-  margin: 1rem;
+  z-index: 60;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(14, 20, 17, .16);
+  background: #d8ff67;
+  color: #111816;
+  cursor: pointer;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .15);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
 
-  @media screen and (min-width: 640px) {
-    margin: theme(margin.6);
-  }
+.wrapper:focus-visible {
+  outline: 2px solid #d8ff67;
+  outline-offset: 4px;
 }
 
 .burger {
-  display: inherit;
-  width: theme(width.8);
-  height: theme(height.4);
-
-  &::after,
-  &::before {
-    width: 100%;
-    height: 2px;
-    content: '';
-    position: absolute;
-    display: block;
-    background-color: theme(colors.background);
-    transition: transform 300ms theme(transitionTimingFunction.in-expo);
-  }
-
-  &::before {
-    top: 0;
-  }
-
-  &::after {
-    bottom: 0;
-  }
+  position: relative;
+  display: block;
+  width: 23px;
+  height: 20px;
 }
 
-.burgerActive {
-  &::before {
-    transform: rotate(-45deg);
-    top: 50%;
-  }
+.burger::before,
+.burger::after {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  content: '';
+  background: currentColor;
+  transform-origin: center;
+  transition: top .3s cubic-bezier(.76, 0, .24, 1),
+              transform .35s cubic-bezier(.76, 0, .24, 1);
+}
 
-  &::after {
-    transform: rotate(45deg);
-    bottom: 50%;
+.burger::before { top: 5px; }
+.burger::after { top: 13px; }
+
+.burgerActive::before { top: 9px; transform: rotate(45deg); }
+.burgerActive::after { top: 9px; transform: rotate(-45deg); }
+
+@media (min-width: 640px) {
+  .wrapper {
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 70px;
+    height: 70px;
   }
 }
