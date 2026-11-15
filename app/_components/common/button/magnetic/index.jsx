@@ -33,14 +33,14 @@ export function MagneticButton({
       animate={{ x, y }}
       transition={{
         type: 'spring',
-        damping: 15,
-        stiffness: 150,
-        mass: 0.1,
+        damping: 16,
+        stiffness: 180,
+        mass: 0.45,
       }}
       onPointerMove={handleMagneticMove}
       onPointerOut={handleMagneticOut}
-      whileHover={{ scale: 1.04 }}
-      whileTap={{ scale: 0.97 }}
+      whileHover={{ scale: 1.06 }}
+      whileTap={{ scale: 0.94 }}
       {...props}
     >
       <MagneticItem>{children}</MagneticItem>
