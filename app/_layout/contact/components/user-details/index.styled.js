@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Row = styled.div`
-  --default-padding: clamp(3rem, 9vh, 6.5rem);
+  --default-padding: clamp(1.75rem, 6vh, 6.5rem);
 
   &:nth-child(1) {
     padding-block-end: calc(var(--default-padding) / 2);
@@ -29,7 +29,7 @@ export const ImageWrapper = styled.div`
 `;
 
 export const MainTitle = styled.h2`
-  font-size: clamp(3.25rem, 7.2vw, 7.5rem);
+  font-size: clamp(2rem, 7.2vw, 7.5rem);
   letter-spacing: -0.065em;
   line-height: 0.94;
 `;
