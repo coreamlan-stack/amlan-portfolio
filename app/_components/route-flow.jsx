@@ -25,13 +25,13 @@ export function RouteFlow({ children }) {
       <AnimatePresence mode='wait' initial={false}>
         <motion.div
           key={pathname}
-          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -12 }}
+          exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -16 }}
           transition={
             reduceMotion
               ? { duration: 0 }
-              : { type: 'spring', stiffness: 115, damping: 24, mass: 0.85 }
+              : { type: 'spring', stiffness: 120, damping: 23, mass: 0.85 }
           }
         >
           {children}
@@ -52,7 +52,7 @@ export function RouteFlow({ children }) {
               className='liquid-route-sweep absolute inset-x-0 top-0 h-[115dvh]'
               initial={{ y: '-115%' }}
               animate={{ y: '105%' }}
-              transition={{ duration: 0.9, times: [0, 1], ease: [0.76, 0, 0.24, 1] }}
+              transition={{ duration: 0.72, ease: [0.76, 0, 0.24, 1] }}
               onAnimationComplete={() => setSweep(current => current === sweep ? null : current)}
             />
           </motion.div>
