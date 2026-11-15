@@ -123,3 +123,24 @@
   0% { opacity: 0.55; transform: translate(-50%, -50%) scale(0.4); }
   100% { opacity: 0; transform: translate(-50%, -50%) scale(2.4); }
 }
+
+/* Sliding uses a directional, fading streak—not the tap's expanding splash. */
+.fluid-touch-streak {
+  position: absolute;
+  pointer-events: none;
+  width: 32px;
+  height: 10px;
+  border-radius: 999px;
+  background: radial-gradient(ellipse, rgba(216,255,103,.34) 0%, rgba(216,255,103,.12) 43%, transparent 76%);
+  transform: translate(-50%, -50%) rotate(var(--trail-angle)) scale(.85);
+  animation: fluid-streak-fade 380ms ease-out forwards;
+}
+
+@keyframes fluid-streak-fade {
+  0% { opacity: .8; transform: translate(-50%, -50%) rotate(var(--trail-angle)) scale(.85); }
+  100% { opacity: 0; transform: translate(-50%, -50%) rotate(var(--trail-angle)) scale(1.6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fluid-touch-streak { animation: none !important; display: none; }
+}
