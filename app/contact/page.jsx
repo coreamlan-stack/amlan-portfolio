@@ -2,6 +2,7 @@ import { ArrowUpRight, Github } from 'lucide-react';
 import Link from 'next/link';
 
 import { PageReveal } from '@/app/_components/page-reveal';
+import { PageShell } from '@/app/_components/page-shell';
 import { SubpageNav } from '@/app/_components/subpage-nav';
 
 export const metadata = {
@@ -11,6 +12,7 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
+    <PageShell>
     <main className='relative min-h-screen bg-background px-6 pb-24 pt-36 text-foreground sm:px-12 sm:pt-44 lg:px-20'>
       <SubpageNav />
       <div className='mx-auto max-w-[1280px]'>
@@ -23,5 +25,6 @@ export default function ContactPage() {
         </div>
       </div>
     </main>
+    </PageShell>
   );
 }
