@@ -22,7 +22,7 @@ export function RouteFlow({ children }) {
 
   return (
     <>
-      <AnimatePresence mode='popLayout' initial={false}>
+      <AnimatePresence mode='wait' initial={false}>
         <motion.div
           key={pathname}
           initial={reduceMotion ? false : { opacity: 0, y: 28 }}
