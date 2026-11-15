@@ -1,18 +1,10 @@
-export const thumbnailOptions = [
-  {
-    href: '/work/hrms',
-    title: 'HRMS',
-    category: 'Frontend · Product UI',
-    cover: '/projects/hrms.svg',
-    alt: 'Illustrated HRMS interface',
-    accent: 'from-emerald-900 to-lime-300',
-  },
-  {
-    href: '/work/portfolio',
-    title: 'Personal portfolio',
-    category: 'Next.js · Creative development',
-    cover: '/projects/portfolio.svg',
-    alt: 'Illustrated portfolio design',
-    accent: 'from-slate-900 to-lime-500',
-  },
-];
+import { caseStudies } from './case-studies';
+
+// Keep the homepage preview and project count synchronized with case studies.
+export const thumbnailOptions = caseStudies.map(project => ({
+  href: `/work/${project.slug}`,
+  title: project.title,
+  category: project.discipline,
+  cover: project.cover,
+  alt: project.alt,
+}));
