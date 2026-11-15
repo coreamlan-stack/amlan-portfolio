@@ -3,6 +3,8 @@ import { neue_montreal } from '@/fonts';
 import { Offcanvas } from '@/layout';
 import { Providers } from '@/providers';
 
+import { FluidPointer } from './_components/fluid-pointer';
+import { RouteFlow } from './_components/route-flow';
 import { SiteExperience } from './_layout/transition/site-experience';
 import './globals.css';
 
@@ -16,8 +18,9 @@ export default function RootLayout({ children }) {
       <body className={neue_montreal.className}>
         <Providers>
           <SiteExperience />
+          <FluidPointer />
           <Offcanvas />
-          {children}
+          <RouteFlow>{children}</RouteFlow>
         </Providers>
       </body>
     </html>
