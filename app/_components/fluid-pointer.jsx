@@ -19,6 +19,7 @@ export function FluidPointer() {
   const [ripples, setRipples] = useState([]);
   const timers = useRef(new Set());
   const rippleId = useRef(0);
+  const lastTouchTrail = useRef(0);
 
   useEffect(() => {
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -31,7 +32,24 @@ export function FluidPointer() {
     finePointer.addEventListener('change', update);
     reducedMotion.addEventListener('change', update);
 
+    const addRipple = (event, trail = false) => {
+      const id = ++rippleId.current;
+      setRipples(previous => [...previous.slice(-5), { id, x: event.clientX, y: event.clientY, trail }]);
+      const timeout = window.setTimeout(() => {
+        setRipples(previous => previous.filter(ripple => ripple.id !== id));
+        timers.current.delete(timeout);
+      }, trail ? 440 : 650);
+      timers.current.add(timeout);
+    };
     const onMove = event => {
+      if (event.pointerType === 'touch' && event.isPrimary && !reducedMotion.matches) {
+        const now = performance.now();
+        if (now - lastTouchTrail.current > 85) {
+          lastTouchTrail.current = now;
+          addRipple(event, true);
+        }
+        return;
+      }
       if (event.pointerType !== 'mouse' || !finePointer.matches || reducedMotion.matches) return;
       x.set(event.clientX);
       y.set(event.clientY);
@@ -44,14 +62,9 @@ export function FluidPointer() {
     };
     const onLeave = () => setVisible(false);
     const onDown = event => {
-      if (event.pointerType === 'mouse' || reducedMotion.matches) return;
-      const id = ++rippleId.current;
-      setRipples(previous => [...previous.slice(-3), { id, x: event.clientX, y: event.clientY }]);
-      const timeout = window.setTimeout(() => {
-        setRipples(previous => previous.filter(ripple => ripple.id !== id));
-        timers.current.delete(timeout);
-      }, 650);
-      timers.current.add(timeout);
+      if (event.pointerType !== 'touch' || !event.isPrimary || reducedMotion.matches) return;
+      lastTouchTrail.current = performance.now();
+      addRipple(event);
     };
 
     document.addEventListener('pointermove', onMove, { passive: true });
@@ -98,7 +111,7 @@ export function FluidPointer() {
         {ripples.map(ripple => (
           <span
             key={ripple.id}
-            className='fluid-touch-ripple'
+            className={ripple.trail ? 'fluid-touch-ripple fluid-touch-trail' : 'fluid-touch-ripple'}
             style={{ left: ripple.x, top: ripple.y }}
           />
         ))}
