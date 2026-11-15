@@ -1,5 +1,6 @@
 import { ArrowUpRight, Github } from 'lucide-react';
 import Link from 'next/link';
+
 import { PageReveal } from '@/app/_components/page-reveal';
 import { SubpageNav } from '@/app/_components/subpage-nav';
 
