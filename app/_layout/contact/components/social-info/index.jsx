@@ -25,8 +25,8 @@ export function SocialInfo() {
 
   return (
     <div className='mx-auto w-full max-w-[1400px] px-6 pt-4 sm:px-[clamp(1.5rem,6vw,7rem)]'>
-      <div className='flex flex-wrap items-stretch justify-between gap-10 border-t border-[#f5f3eb]/15 pt-8'>
-        <div className='flex flex-wrap gap-x-10 gap-y-6'>
+      <div className='flex flex-wrap items-stretch justify-between gap-8 border-t border-[#f5f3eb]/15 pt-8'>
+        <div className='flex flex-wrap gap-x-7 gap-y-6 sm:gap-x-10'>
           <div>
             <ListTitle>Version</ListTitle>
             <p className='mt-7'>2026 © Portfolio</p>
