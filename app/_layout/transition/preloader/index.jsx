@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import { motion } from 'framer-motion';
 import { Dot } from 'lucide-react';
@@ -15,6 +16,9 @@ const MotionComponent = motion(Center);
 
 export function Preloader() {
   const [index, setIndex] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
   const { width, height } = useDimensions();
 
   useTimeOut({
@@ -44,9 +48,11 @@ export function Preloader() {
     },
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <MotionComponent
-      className='fixed z-[80] h-screen w-screen cursor-wait bg-background'
+      className='fixed inset-0 z-[9999] h-dvh w-full cursor-wait bg-background'
       variants={slideUp}
       initial='initial'
       exit='exit'
@@ -54,14 +60,16 @@ export function Preloader() {
       {width > 0 ? (
         <>
           <MotionComponent
-            className='text-3xl text-foreground md:text-4xl'
+            className='absolute inset-0 flex items-center justify-center text-3xl text-foreground md:text-4xl'
             variants={fade}
             initial='initial'
             animate='enter'
             aria-live='polite'
           >
-            <Dot size={48} className='me-3 text-primary' />
-            <p>{preloaderWords[index]}</p>
+            <span className='relative inline-flex max-w-[calc(100vw-3rem)] items-center justify-center text-center'>
+              <Dot size={28} className='absolute right-full me-2 shrink-0 text-primary' aria-hidden='true' />
+              <span className='block leading-tight'>{preloaderWords[index]}</span>
+            </span>
           </MotionComponent>
           <motion.svg className='absolute top-0 -z-10 h-[calc(100%+300px)] w-full'>
             <motion.path
@@ -73,6 +81,7 @@ export function Preloader() {
           </motion.svg>
         </>
       ) : null}
-    </MotionComponent>
+    </MotionComponent>,
+    document.body
   );
 }
