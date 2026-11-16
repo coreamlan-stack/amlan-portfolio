@@ -11,13 +11,14 @@ import { Preloader } from './preloader';
 // The root layout persists during client-side navigation, so this introduction
 // is not remounted every time a page changes.
 export function SiteExperience() {
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
 
   useLenis();
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => setLoading(false), 1700);
-    return () => window.clearTimeout(timeout);
+    // No artificial blocking intro: the hero and navigation can render immediately.
+    setLoading(false);
+    return undefined;
   }, []);
 
   return (
