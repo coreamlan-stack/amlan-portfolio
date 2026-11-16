@@ -49,7 +49,7 @@ export default function WorkPage() {
           {caseStudies.map((project, index) => (
             <PageReveal key={project.slug} delay={Math.min(index % 2 * 0.08, 0.12)}>
               <Link href={`/work/${project.slug}`} className='group block outline-offset-8 focus-visible:outline-2 focus-visible:outline-primary'>
-                <div className='relative aspect-[5/4] overflow-hidden rounded-3xl border border-white/10 bg-[#182024]'>
+                <div className='relative aspect-[5/4] overflow-hidden rounded-3xl border border-white/10 bg-[#182024] transition-colors duration-300 group-hover:border-primary/45 group-focus-visible:border-primary'>
                   <FluidProjectCover src={project.cover} alt={project.alt} priority={index === 0} />
                   <span className='absolute left-4 top-4 rounded-full border border-white/20 bg-[#121a19]/80 px-3 py-2 text-[11px] tracking-wide text-white backdrop-blur-sm sm:left-6 sm:top-6'>
                     {accessLabels[project.access] || 'Project'}
@@ -58,7 +58,7 @@ export default function WorkPage() {
                     <ArrowUpRight size={23} aria-hidden='true' />
                   </span>
                 </div>
-                <div className='mt-6 flex items-start justify-between gap-5'>
+                <div className='mt-6 flex items-start justify-between gap-5 transition-transform duration-300 motion-safe:group-hover:translate-x-1'>
                   <div>
                     <p className='mb-3 text-xs uppercase tracking-[0.18em] text-muted-foreground'>{project.eyebrow}</p>
                     <h2 className='text-3xl tracking-[-0.045em] sm:text-5xl'>{project.title}</h2>
