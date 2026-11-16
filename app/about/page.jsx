@@ -76,7 +76,8 @@ export default function AboutPage() {
 
         <section className='bg-[#151d1e] px-6 py-24 sm:px-12 lg:px-20'>
           <div className='mx-auto max-w-[1280px]'>
-            <p className='mb-12 text-xs uppercase tracking-[0.25em] text-primary'>What I bring to a project</p>
+            <p className='mb-4 text-xs uppercase tracking-[0.25em] text-primary'>What I bring to a project</p>
+            <h2 className='mb-12 max-w-3xl text-3xl tracking-[-0.05em] sm:text-5xl'>From first sketch to the final interaction.</h2>
             {disciplines.map(item => (
               <PageReveal key={item.number}>
                 <div className='grid gap-4 border-t border-white/15 py-9 md:grid-cols-[80px_1fr_1fr] md:gap-10'>
