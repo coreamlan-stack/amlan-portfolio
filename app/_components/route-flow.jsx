@@ -1,22 +1,59 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
-// Short, composited route entrance. No blocking exit animation or blurred overlay.
+// The root layout persists. Keep the first-visit preloader separate and do not
+// hide content behind a screen-sized transition overlay on route changes.
 export function RouteFlow({ children }) {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
+  const previous = useRef(pathname);
+  const [wave, setWave] = useState(null);
+
+  useEffect(() => {
+    if (previous.current === pathname) return;
+    previous.current = pathname;
+    if (reduceMotion) return;
+    setWave(pathname);
+  }, [pathname, reduceMotion]);
 
   return (
-    <motion.div
-      key={pathname}
-      initial={reduceMotion ? false : { opacity: 0.92, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={reduceMotion ? { duration: 0 } : { duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-      style={{ minHeight: '100dvh' }}
-    >
-      {children}
-    </motion.div>
+    <>
+      <AnimatePresence mode='wait' initial={false}>
+        <motion.div
+          key={pathname}
+          initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -14 }}
+          transition={
+            reduceMotion
+              ? { duration: 0 }
+              : { type: 'spring', stiffness: 115, damping: 23, mass: 0.85 }
+          }
+          style={{ minHeight: '100dvh' }}
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
+      <AnimatePresence>
+        {wave && !reduceMotion && (
+          <motion.div
+            key={wave}
+            aria-hidden='true'
+            className='pointer-events-none fixed inset-x-0 bottom-0 z-[55] h-24 overflow-hidden'
+            initial={{ opacity: 0, y: 68, scaleY: 0.45 }}
+            animate={{ opacity: [0, 0.55, 0], y: [-8, -22, -62], scaleY: [0.45, 1, 0.7] }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.8, 0.25, 1] }}
+            onAnimationComplete={() => setWave(current => current === wave ? null : current)}
+          >
+            <div className='h-full w-full rounded-[50%_50%_0_0] bg-primary/20 blur-xl' />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
