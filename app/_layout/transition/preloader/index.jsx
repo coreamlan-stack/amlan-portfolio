@@ -46,7 +46,7 @@ export function Preloader() {
 
   return (
     <MotionComponent
-      className='fixed z-50 h-screen w-screen cursor-wait bg-background'
+      className='fixed z-[80] h-screen w-screen cursor-wait bg-background'
       variants={slideUp}
       initial='initial'
       exit='exit'
