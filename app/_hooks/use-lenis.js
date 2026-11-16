@@ -8,15 +8,14 @@ export function useLenis() {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
-    // Let touch devices use native momentum scrolling to avoid competing gesture physics.
-    if (window.matchMedia('(pointer: coarse)').matches) return undefined;
-
-    // Smooth wheel input only; avoid injecting touch inertia.
+    // Keep the same scroll physics on desktop and touch.
     const lenis = new Lenis({
       duration: 1.15,
       easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      syncTouch: false,
+      syncTouch: true,
+      syncTouchLerp: 0.075,
+      touchInertiaMultiplier: 18,
     });
 
     let frameId = 0;
