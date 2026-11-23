@@ -84,7 +84,7 @@ export function Header() {
 
   return (
     <motion.header
-      className='relative min-h-[100svh] overflow-hidden bg-background text-foreground'
+      className='relative h-[100svh] min-h-[32rem] overflow-hidden bg-background text-foreground'
       variants={slideUp}
       initial='initial'
       animate='enter'
