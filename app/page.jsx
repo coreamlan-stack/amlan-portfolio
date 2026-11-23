@@ -8,8 +8,6 @@ import {
   Transition,
 } from '@/layout';
 
-import { CinematicBackground } from './_components/cinematic-background';
-
 /** @type {import('next').Metadata} */
 export const metadata = {
   title: 'Amlan Kumar Bhowmik — Software Developer & UI/UX Designer',
@@ -20,8 +18,7 @@ export const metadata = {
 export default function Home() {
   return (
     <Transition>
-      <CinematicBackground />
-      <div className='isolate relative z-10'>
+      <div className='relative isolate z-10'>
         <Navbar />
         <Header />
         <main>

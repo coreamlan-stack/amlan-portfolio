@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * One continuous video behind the homepage. The foreground and its GSAP
+ * One responsive video behind the footer. The foreground and its GSAP
  * animations are deliberately left intact.
  */
-export function CinematicBackground() {
+export function CinematicBackground({ placement = 'footer' }) {
   const videoRef = useRef(null);
   const [motionAllowed, setMotionAllowed] = useState(false);
   const [paused, setPaused] = useState(false);
@@ -30,7 +30,12 @@ export function CinematicBackground() {
   }, [motionAllowed, paused]);
 
   return (
-    <div aria-hidden='true' className='pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#09090b]'>
+    <div
+      aria-hidden='true'
+      className={`pointer-events-none inset-0 z-0 overflow-hidden bg-[#09090b] ${
+        placement === 'page' ? 'fixed' : 'absolute'
+      }`}
+    >
       <video
         ref={videoRef}
         autoPlay={motionAllowed && !paused}
@@ -38,10 +43,19 @@ export function CinematicBackground() {
         loop
         playsInline
         preload='metadata'
-        poster='/cinematic-wings-poster.jpg'
-        className='absolute inset-0 h-full w-full object-cover object-center opacity-75'
+        className='absolute inset-0 size-full object-cover object-center opacity-75'
       >
-        <source src='/cinematic-wings.mp4' type='video/mp4' />
+        <source
+          media='(max-width: 768px)'
+          src='/wings-mobile-v8_540p.mp4'
+          type='video/mp4'
+        />
+        <source
+          media='(min-width: 1921px)'
+          src='/wings-v8-2k.mp4'
+          type='video/mp4'
+        />
+        <source src='/wings-v8_1080p.mp4' type='video/mp4' />
       </video>
       <div className='absolute inset-0 bg-gradient-to-b from-black/45 via-black/65 to-black/80' />
     </div>
