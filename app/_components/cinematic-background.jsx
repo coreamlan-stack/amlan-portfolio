@@ -8,6 +8,8 @@ import { useEffect, useRef, useState } from 'react';
  */
 export function CinematicBackground({ placement = 'footer' }) {
   const videoRef = useRef(null);
+  const containerRef = useRef(null);
+  const [inView, setInView] = useState(true);
   const [motionAllowed, setMotionAllowed] = useState(false);
   const [pageVisible, setPageVisible] = useState(true);
 
@@ -27,17 +29,30 @@ export function CinematicBackground({ placement = 'footer' }) {
   }, []);
 
   useEffect(() => {
+    if (placement === 'page' || typeof IntersectionObserver === 'undefined') {
+      setInView(true);
+      return undefined;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      setInView(entry.isIntersecting);
+    }, { rootMargin: '200px' });
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [placement]);
+
+  useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    if (motionAllowed && pageVisible) {
+    if (motionAllowed && pageVisible && inView) {
       video.play().catch(() => {});
     } else {
       video.pause();
     }
-  }, [motionAllowed, pageVisible]);
+  }, [motionAllowed, pageVisible, inView]);
 
   return (
     <div
+      ref={containerRef}
       aria-hidden='true'
       className={`pointer-events-none inset-0 z-0 overflow-hidden bg-[#09090b] ${
         placement === 'page' ? 'fixed' : 'absolute'
