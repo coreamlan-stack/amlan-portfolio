@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 
 export const Container = styled.div`
   width: min(100%, 1400px);
-  padding-inline: clamp(1.5rem, 6vw, 7rem);
+  padding-inline: clamp(1.5rem, 3vw, 3.5rem);
   margin-inline: auto;
 `;
 
@@ -16,12 +16,12 @@ export const Row = styled.div`
   }
 
   &:nth-child(2) {
-    padding-block-end: calc(var(--default-padding) * 0.5);
+    padding-block-end: 0;
   }
 `;
 
 export const ImageWrapper = styled.div`
-  --image-size: clamp(3.5rem, 5vw, 5.5rem);
+  --image-size: clamp(4.5rem, 6vw, 6.25rem);
 
   position: relative;
   width: var(--image-size);

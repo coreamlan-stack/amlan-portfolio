@@ -23,11 +23,15 @@ export function StyledComponentsRegistry({ children }) {
     return <>{styles}</>;
   });
 
-  if (typeof window !== 'undefined') return <>{children}</>;
+  const themedChildren = (
+    <ThemeProvider theme={theme}>{children}</ThemeProvider>
+  );
+
+  if (typeof window !== 'undefined') return themedChildren;
 
   return (
     <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      {themedChildren}
     </StyleSheetManager>
   );
 }

@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
@@ -30,25 +29,17 @@ export function Description() {
           </ParallaxFade>
         </div>
 
-        <motion.div
-          className='w-full lg:w-auto'
-          initial={{ opacity: 0, y: 45, scale: 0.88 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ type: 'spring', stiffness: 105, damping: 17, mass: 0.85 }}
-        >
-          <div className='relative mt-1 flex justify-start lg:absolute lg:right-0 lg:top-full lg:me-10 lg:mt-0'>
-            <Link href='/about' passHref>
-              <MagneticButton
-                variant='ghost'
-                size='xl'
-                className='!px-8 !py-7 !text-sm sm:!px-10 sm:!py-10 lg:!px-14 lg:!py-20 lg:!text-lg'
-              >
-                About Amlan
-              </MagneticButton>
-            </Link>
-          </div>
-        </motion.div>
+        <div className='description-action'>
+          <Link href='/about' passHref>
+            <MagneticButton
+              variant='ghost'
+              size='xl'
+              className='!px-8 !py-7 !text-sm sm:!p-10 lg:!px-14 lg:!py-20 lg:!text-lg'
+            >
+              About Amlan
+            </MagneticButton>
+          </Link>
+        </div>
       </Wrapper>
     </article>
   );

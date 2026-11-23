@@ -11,9 +11,15 @@ export function OffcanvasFooter() {
     const id = randomId();
     return (
       <li key={id}>
-        <Link href={href} target='_blank' rel='noopener' passHref>
-          <MagneticButton>{title}</MagneticButton>
-        </Link>
+        {href ? (
+          <Link href={href} target='_blank' rel='noopener' passHref>
+            <MagneticButton>{title}</MagneticButton>
+          </Link>
+        ) : (
+          <span aria-disabled='true' className='inline-flex p-2 opacity-55'>
+            {title}
+          </span>
+        )}
       </li>
     );
   });

@@ -1,7 +1,7 @@
 export default function manifest() {
   return {
-    name: 'Amlan Kumar Bhowmik — Portfolio',
-    short_name: 'Amlan',
+    name: 'Core Amlan — Portfolio',
+    short_name: 'Core Amlan',
     description: 'Design-driven software developer and UI/UX designer.',
     start_url: '/',
     display: 'browser',

@@ -17,7 +17,7 @@ export const ThumbnailModal = forwardRef(function ThumbnailModal(
   return (
     <MotionComponent
       ref={ref}
-      className='pointer-events-none fixed left-1/2 top-1/2 hidden size-80 overflow-hidden rounded-xl border border-primary/40 bg-card shadow-2xl shadow-black/50 lg:flex'
+      className='pointer-events-none fixed left-1/2 top-1/2 hidden size-72 overflow-hidden rounded-xl border border-primary/40 bg-card shadow-2xl shadow-black/50 lg:flex'
       variants={variants}
       initial='initial'
       animate={active ? 'enter' : 'closed'}
@@ -31,11 +31,15 @@ export const ThumbnailModal = forwardRef(function ThumbnailModal(
         }}
       >
         {thumbnailOptions.map(({ title, cover, alt }) => (
-          <Center
-            key={title}
-            className='size-full bg-[#182024]'
-          >
-            <Image src={cover} alt={alt} width={1200} height={960} unoptimized className='size-full object-cover' />
+          <Center key={title} className='size-full bg-[#182024]'>
+            <Image
+              src={cover}
+              alt={alt}
+              width={1200}
+              height={960}
+              unoptimized
+              className='size-full object-cover'
+            />
           </Center>
         ))}
       </div>

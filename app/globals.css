@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Obsidian Vector';
+  src: url('/font/obsidian-vector-regular.ttf') format('truetype');
+  font-display: swap;
+}
+
 @layer base {
   * {
     border-color: theme(colors.border);
@@ -16,6 +22,18 @@
     background-color: theme(colors.background);
     color: theme(colors.foreground);
     text-rendering: optimizeLegibility;
+  }
+
+  .brand-wordmark {
+    font-family: 'Obsidian Vector', "Arial Narrow", Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.075em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .core-amlan-name {
+    font-family: 'Obsidian Vector', Arial, sans-serif;
   }
 
   a, button {
@@ -127,4 +145,52 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .fluid-touch-lens { display: none; }
+}
+
+@keyframes logo-loop-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-33.333%); }
+}
+
+.logo-loop::before,
+.logo-loop::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  width: clamp(1.5rem, 7vw, 6rem);
+  pointer-events: none;
+}
+
+.logo-loop::before {
+  left: 0;
+  background: linear-gradient(90deg, hsl(var(--background)), transparent);
+}
+
+.logo-loop::after {
+  right: 0;
+  background: linear-gradient(-90deg, hsl(var(--background)), transparent);
+}
+
+.logo-loop__track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  animation: logo-loop-left var(--logo-loop-duration) linear infinite;
+  will-change: transform;
+}
+
+.logo-loop__track--right {
+  animation-direction: reverse;
+}
+
+.logo-loop:hover .logo-loop__track,
+.logo-loop:focus-within .logo-loop__track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-loop__track { animation: none; }
 }

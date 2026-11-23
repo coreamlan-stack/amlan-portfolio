@@ -1,19 +1,53 @@
-import { Center } from '@/components';
+/* eslint-disable @next/next/no-img-element -- brand SVGs are served directly by Simple Icons. */
 
-/** @param {{ label: string; tone: string }} props */
-export function ProjectSlider({ label, tone }) {
+/**
+ * @param {{
+ *  logos: Array<{ label: string; logo: string; href: string }>;
+ *  speed?: number;
+ *  direction?: 'left' | 'right';
+ *  ariaLabel: string;
+ * }} props
+ */
+export function LogoLoop({ logos, speed = 40, direction = 'left', ariaLabel }) {
+  const repeatedLogos = [...logos, ...logos, ...logos];
+
   return (
-    <Center
-      className={`relative w-1/4 overflow-hidden rounded-2xl border border-white/10 ${tone}`}
-      style={{ minWidth: 'min(42vw, 220px)', height: 'clamp(112px, 20vw, 280px)' }}
+    <div
+      className='logo-loop group relative overflow-hidden py-3 sm:py-4'
+      role='region'
+      aria-label={ariaLabel}
     >
-      <div
-        aria-hidden='true'
-        className='absolute inset-4 rounded-xl border border-white/20'
-      />
-      <span className='relative max-w-[11ch] px-3 text-center text-[clamp(.85rem,1.45vw,1.3rem)] font-medium tracking-tight text-white mix-blend-difference'>
-        {label}
-      </span>
-    </Center>
+      <ul
+        className={`logo-loop__track ${direction === 'right' ? 'logo-loop__track--right' : ''}`}
+        style={{ '--logo-loop-duration': `${speed}s` }}
+      >
+        {repeatedLogos.map((item, index) => (
+          <li
+            key={`${item.label}-${index}`}
+            aria-hidden={index >= logos.length}
+          >
+            <a
+              href={item.href}
+              target='_blank'
+              rel='noreferrer noopener'
+              tabIndex={index >= logos.length ? -1 : undefined}
+              className='flex items-center gap-3 py-2 text-foreground/75 transition-colors hover:text-primary focus-visible:text-primary'
+            >
+              <img
+                src={item.logo}
+                alt=''
+                width='26'
+                height='26'
+                className='size-[26px] shrink-0 object-contain'
+                loading='lazy'
+              />
+              <span className='whitespace-nowrap text-base font-medium tracking-[-.02em]'>
+                {item.label}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

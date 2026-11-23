@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import { motion } from 'framer-motion';
-import { MoveDownRight } from 'lucide-react';
+import { Globe, MoveDownRight } from 'lucide-react';
 
 import { ParallaxSlider } from '@/components';
 
@@ -126,18 +126,16 @@ export function Header() {
         <div className='absolute inset-x-6 top-[58%] -translate-y-1/2 md:left-0 md:right-[18%] md:top-[60%] md:h-[clamp(9rem,25vw,22rem)] md:translate-x-[-3vw]'>
           <h1
             className='text-[clamp(2.7rem,11vw,3.85rem)] font-medium leading-[0.9] tracking-[-0.055em] md:hidden'
-            aria-label='Amlan Kumar Bhowmik'
+            aria-label='Core Amlan'
           >
-            <span className='block'>Amlan Kumar</span>
-            <span className='block'>Bhowmik</span>
+            <span className='brand-wordmark block'>Core</span>
+            <span className='brand-wordmark block'>Amlan</span>
           </h1>
-          <h1
-            className='hidden h-full md:block'
-            aria-label='Amlan Kumar Bhowmik'
-          >
+          <h1 className='hidden h-full md:block' aria-label='Core Amlan'>
             <TechText
-              text='Amlan Kumar Bhowmik'
-              fontWeight={600}
+              text='CORE AMLAN'
+              fontFamily='Obsidian Vector, Arial, sans-serif'
+              fontWeight={400}
               fontSize={150}
               letterSpacing={-0.05}
               reveal='letter'
@@ -158,7 +156,7 @@ export function Header() {
           <h1 className='text-[clamp(4rem,9vw,10rem)] leading-[0.9]'>
             <ParallaxSlider repeat={4} baseVelocity={2}>
               <span className='pe-12'>
-                Amlan Kumar Bhowmik <span className='spacer'>—</span>
+                Core Amlan <span className='spacer'>—</span>
               </span>
             </ParallaxSlider>
           </h1>
@@ -175,6 +173,20 @@ export function Header() {
               <span className='block'>Software Developer</span>
               <span className='block text-primary'>&amp; UI/UX Designer</span>
             </h4>
+          </div>
+        </div>
+        <div className='absolute bottom-16 left-0 z-10 rounded-r-[2rem] bg-foreground px-6 py-4 text-background shadow-[0_14px_34px_rgba(0,0,0,0.2)] md:bottom-20 md:px-8 md:py-5'>
+          <div className='flex items-center gap-5'>
+            <p className='text-base font-medium leading-[1.12] tracking-[-0.035em] md:text-lg'>
+              <span className='block'>Based in</span>
+              <span className='block'>Tripura, India</span>
+            </p>
+            <span
+              className='grid size-14 shrink-0 place-items-center rounded-full bg-background/15 text-background md:size-[4.5rem]'
+              aria-hidden='true'
+            >
+              <Globe size={30} strokeWidth={1.5} />
+            </span>
           </div>
         </div>
       </div>

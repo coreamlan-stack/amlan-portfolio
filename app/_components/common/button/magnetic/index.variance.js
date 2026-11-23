@@ -7,14 +7,15 @@ export const magneticVariance = cva(
       variant: {
         default: 'bg-transparent before:bg-transparent after:bg-transparent',
         primary:
-          'bg-primary text-background before:bg-primary-foreground after:bg-primary-foreground',
+          'bg-primary text-background before:bg-[#151d1e] after:bg-[#151d1e] hover:text-primary',
         destructive:
           'bg-background text-destructive-foreground before:bg-destructive after:bg-destructive',
         secondary:
           'bg-background text-secondary-foreground before:bg-secondary after:bg-secondary',
         ghost:
           'bg-foreground text-background before:bg-primary after:bg-primary',
-        outline: 'border border-solid before:bg-primary after:bg-primary',
+        outline:
+          'border border-solid text-foreground before:bg-primary after:bg-primary hover:border-primary hover:text-background',
       },
       size: {
         default: 'p-2 text-sm',

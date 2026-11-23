@@ -38,10 +38,11 @@ export function Thumbnail() {
     <section
       className='container relative'
       onPointerMove={event => {
-        if (event.pointerType === 'mouse') moveItems(event.clientX, event.clientY);
+        if (event.pointerType === 'mouse')
+          moveItems(event.clientX, event.clientY);
       }}
     >
-      <div className='my-8 flex flex-col gap-10'>
+      <div className='my-6 flex flex-col gap-7 sm:my-8 sm:gap-8'>
         <ThumbnailLabel>Selected work</ThumbnailLabel>
         <ThumbnailList
           handlePointerEnter={handlePointerEnter}
@@ -63,7 +64,10 @@ export function Thumbnail() {
           View
         </ThumbnailCursorLabel>
         <ThumbnailAction>
-          View work<sup className='text-muted-foreground'>{String(caseStudies.length).padStart(2, '0')}</sup>
+          View work
+          <sup className='text-muted-foreground'>
+            {String(caseStudies.length).padStart(2, '0')}
+          </sup>
         </ThumbnailAction>
       </div>
     </section>

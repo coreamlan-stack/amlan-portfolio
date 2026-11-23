@@ -33,9 +33,10 @@ export function AboutPage() {
         eyebrow='About'
         title='Design-minded development, built to last.'
       >
-        I’m Amlan Kumar Bhowmik, a software developer and UI/UX designer. I
-        enjoy shaping the complete experience—from the structure behind an
-        application to the small decisions that make an interface feel clear.
+        I’m <span className='core-amlan-name'>Core Amlan</span>, a software
+        developer and UI/UX designer. I enjoy shaping the complete
+        experience—from the structure behind an application to the small
+        decisions that make an interface feel clear.
       </PageIntro>
       <section className='grid gap-16 px-6 py-20 md:grid-cols-[1.1fr_1fr] md:px-12 md:py-28'>
         <div>
