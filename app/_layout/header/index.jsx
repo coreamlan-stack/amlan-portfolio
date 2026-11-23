@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Globe, MoveDownRight } from 'lucide-react';
 
 import { slideUp } from './variants';
@@ -73,6 +73,7 @@ const SCENE_QUALITY = {
 };
 
 export function Header() {
+  const reduceMotion = useReducedMotion();
   const [quality, setQuality] = useState(null);
   const [heroActive, setHeroActive] = useState(true);
   const heroRef = useRef(null);
@@ -120,7 +121,7 @@ export function Header() {
       ref={heroRef}
       className='relative h-[100svh] min-h-[32rem] overflow-hidden bg-background text-foreground'
       variants={slideUp}
-      initial='initial'
+      initial={reduceMotion ? false : 'initial'}
       animate='enter'
     >
       {scene && (
