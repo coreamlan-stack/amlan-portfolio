@@ -54,7 +54,7 @@ export function UserDetails() {
       </Row>
       <Row>
         <motion.div
-          className='relative z-20 -mt-2 flex justify-start md:-mt-4 md:justify-end'
+          className='relative z-20 -mt-2 flex justify-start md:-mt-4 md:mr-[7%] md:justify-end'
           initial={{ opacity: 0, scale: 0.75, y: 40 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}

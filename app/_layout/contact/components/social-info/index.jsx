@@ -29,7 +29,7 @@ export function SocialInfo() {
   ));
 
   return (
-    <div className='mx-auto w-full max-w-[1400px] px-6 pt-4 sm:px-[clamp(1.5rem,6vw,7rem)]'>
+    <div className='w-full px-6 pt-4 sm:px-14'>
       <div className='flex flex-wrap items-stretch justify-between gap-8 pt-4'>
         <div className='flex flex-wrap gap-x-7 gap-y-6 sm:gap-x-10'>
           <div>
