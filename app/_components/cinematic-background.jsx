@@ -60,7 +60,6 @@ export function CinematicBackground({ placement = 'footer' }) {
     >
       <video
         ref={videoRef}
-        autoPlay={motionAllowed && pageVisible}
         muted
         loop
         playsInline
