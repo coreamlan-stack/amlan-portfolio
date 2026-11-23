@@ -5,8 +5,6 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Globe, MoveDownRight } from 'lucide-react';
 
-import { ParallaxSlider } from '@/components';
-
 import { slideUp } from './variants';
 import AeroShards from '../../_components/aero-shards';
 import TechText from '../../_components/tech-text';
@@ -24,7 +22,8 @@ function getHeroQuality() {
     cores <= 4 ||
     memory <= 4;
 
-  if (!mobile) return 'desktop';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return 'mobile-lite';
+  if (!mobile) return constrained ? 'desktop-lite' : 'desktop';
   return constrained ? 'mobile-lite' : 'mobile';
 }
 
@@ -36,6 +35,14 @@ const SCENE_QUALITY = {
     glow: 0.35,
     intro: true,
     interactive: true,
+  },
+  'desktop-lite': {
+    count: 250,
+    dpr: 1,
+    speed: 0.15,
+    glow: 0.25,
+    intro: false,
+    interactive: false,
   },
   mobile: {
     count: 320,
@@ -77,7 +84,7 @@ export function Header() {
 
   return (
     <motion.header
-      className='relative h-screen overflow-hidden bg-background text-foreground'
+      className='relative min-h-[100svh] overflow-hidden bg-background text-foreground'
       variants={slideUp}
       initial='initial'
       animate='enter'
@@ -152,15 +159,6 @@ export function Header() {
             />
           </h1>
         </div>
-        {false && (
-          <h1 className='text-[clamp(4rem,9vw,10rem)] leading-[0.9]'>
-            <ParallaxSlider repeat={4} baseVelocity={2}>
-              <span className='pe-12'>
-                Core Amlan <span className='spacer'>—</span>
-              </span>
-            </ParallaxSlider>
-          </h1>
-        )}
         <div className='absolute inset-x-6 top-[71%] md:left-auto md:right-36 md:top-[62%] md:translate-y-28'>
           <div className='flex items-center gap-4 md:gap-6'>
             <MoveDownRight
