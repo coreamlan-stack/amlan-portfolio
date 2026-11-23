@@ -56,8 +56,14 @@ export function Offcanvas() {
       if (!items.length) { event.preventDefault(); return; }
       const firstItem = items[0];
       const lastItem = items[items.length - 1];
-      if (event.shiftKey && document.activeElement === firstItem) { event.preventDefault(); lastItem.focus(); }
-      else if (!event.shiftKey && document.activeElement === lastItem) { event.preventDefault(); firstItem.focus(); }
+      const focusInside = menu?.contains(document.activeElement);
+      if (event.shiftKey && (!focusInside || document.activeElement === firstItem)) {
+        event.preventDefault();
+        lastItem.focus();
+      } else if (!event.shiftKey && (!focusInside || document.activeElement === lastItem)) {
+        event.preventDefault();
+        firstItem.focus();
+      }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => {
