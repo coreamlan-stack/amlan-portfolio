@@ -22,7 +22,9 @@ function getHeroQuality() {
     cores <= 4 ||
     memory <= 4;
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return 'mobile-lite';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return mobile ? 'mobile-lite' : 'desktop-reduced';
+  }
   if (!mobile) return constrained ? 'desktop-lite' : 'desktop';
   return constrained ? 'mobile-lite' : 'mobile';
 }
@@ -35,6 +37,14 @@ const SCENE_QUALITY = {
     glow: 0.35,
     intro: true,
     interactive: true,
+  },
+  'desktop-reduced': {
+    count: 150,
+    dpr: 0.8,
+    speed: 0,
+    glow: 0.25,
+    intro: false,
+    interactive: false,
   },
   'desktop-lite': {
     count: 250,
