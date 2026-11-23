@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { motion } from 'framer-motion';
 import { Globe, MoveDownRight } from 'lucide-react';
@@ -64,6 +64,25 @@ const SCENE_QUALITY = {
 
 export function Header() {
   const [quality, setQuality] = useState(null);
+  const [heroActive, setHeroActive] = useState(true);
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const element = heroRef.current;
+    if (!element) return undefined;
+    let intersecting = true;
+    const update = () => setHeroActive(intersecting && !document.hidden);
+    const observer = new IntersectionObserver(([entry]) => {
+      intersecting = entry.isIntersecting;
+      update();
+    }, { threshold: 0 });
+    observer.observe(element);
+    document.addEventListener('visibilitychange', update);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', update);
+    };
+  }, []);
 
   useEffect(() => {
     const updateQuality = () => setQuality(getHeroQuality());
@@ -84,6 +103,7 @@ export function Header() {
 
   return (
     <motion.header
+      ref={heroRef}
       className='relative h-[100svh] min-h-[32rem] overflow-hidden bg-background text-foreground'
       variants={slideUp}
       initial='initial'
@@ -120,7 +140,7 @@ export function Header() {
             intro={scene.intro}
             mouseStrength={scene.interactive ? 0.6 : 0}
             parallax={scene.interactive ? 0.5 : 0}
-            paused={scene.speed === 0}
+            paused={scene.speed === 0 || !heroActive}
             dpr={scene.dpr}
           />
         </div>
