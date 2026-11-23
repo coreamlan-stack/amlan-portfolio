@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Obsidian Vector';
+  src: url('/font/obsidian-vector-regular.ttf') format('truetype');
+  font-display: swap;
+}
+
 @layer base {
   * {
     border-color: theme(colors.border);
@@ -19,11 +25,15 @@
   }
 
   .brand-wordmark {
-    font-family: var(--font-neue-montreal), "Arial Narrow", Arial, sans-serif;
+    font-family: 'Obsidian Vector', "Arial Narrow", Arial, sans-serif;
     font-weight: 400;
     letter-spacing: 0.075em;
     line-height: 1;
     text-transform: uppercase;
+  }
+
+  .core-amlan-name {
+    font-family: 'Obsidian Vector', Arial, sans-serif;
   }
 
   a, button {

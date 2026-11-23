@@ -134,6 +134,7 @@ export function Header() {
           <h1 className='hidden h-full md:block' aria-label='Core Amlan'>
             <TechText
               text='CORE AMLAN'
+              fontFamily='Obsidian Vector, Arial, sans-serif'
               fontWeight={400}
               fontSize={150}
               letterSpacing={-0.05}
