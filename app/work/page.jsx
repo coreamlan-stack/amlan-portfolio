@@ -9,15 +9,13 @@ import { caseStudies } from '@/data';
 
 export const metadata = {
   title: 'Selected Work',
-  description:
-    'Frontend, Flutter, business software and independent interface concepts by Amlan Kumar Bhowmik.',
+  description: 'Frontend, Flutter and business software by Core Amlan.',
 };
 
 const accessLabels = {
   internal: 'Internal systems',
   independent: 'Independent project',
   'details-pending': 'Project details pending',
-  concept: 'Independent concept',
   public: 'Public project',
 };
 
@@ -45,8 +43,7 @@ export default function WorkPage() {
           </div>
           <div className='mt-12 flex items-center justify-between text-xs uppercase tracking-[0.2em] text-muted-foreground'>
             <span>
-              {String(caseStudies.length).padStart(2, '0')} projects and
-              concepts
+              {String(caseStudies.length).padStart(2, '0')} selected projects
             </span>
             <ArrowDownRight size={20} aria-hidden='true' />
           </div>
@@ -101,9 +98,9 @@ export default function WorkPage() {
 
         <aside className='mx-auto max-w-[1440px] border-t border-white/10 px-6 py-12 sm:px-12 lg:px-20'>
           <p className='max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base'>
-            Some work is described at a high level because public screenshots or
-            implementation details are not available. Illustrative visuals are
-            clearly identified; independent concepts are not client commissions.
+            Some work is described at a high level because implementation
+            details are not available for public sharing. All gallery visuals
+            are authentic project screens.
           </p>
           <Link
             href='/about'

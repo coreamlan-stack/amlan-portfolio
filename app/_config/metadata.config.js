@@ -2,18 +2,18 @@
 export const rootMetadata = {
   metadataBase: new URL('https://amlan-portfolio-six.vercel.app'),
   title: {
-    template: '%s | Amlan Kumar Bhowmik',
-    default: 'Amlan Kumar Bhowmik — Software Developer & UI/UX Designer',
+    template: '%s | Core Amlan',
+    default: 'Core Amlan - Software Developer & UI/UX Designer',
   },
   description:
-    'Portfolio of Amlan Kumar Bhowmik, a design-driven software developer building elegant, maintainable digital experiences.',
+    'Portfolio of Core Amlan, a design-driven software developer building elegant, maintainable digital experiences.',
   icons: {
     icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
     shortcut: '/icon.svg',
   },
   manifest: '/manifest.webmanifest',
   generator: 'Next.js',
-  applicationName: 'Amlan Kumar Bhowmik Portfolio',
+  applicationName: 'Core Amlan Portfolio',
   referrer: 'origin-when-cross-origin',
   keywords: [
     'Software Developer',
@@ -23,21 +23,19 @@ export const rootMetadata = {
     'Flutter',
     'Spring Boot',
   ],
-  authors: [
-    { name: 'Amlan Kumar Bhowmik', url: 'https://github.com/coreamlan-stack' },
-  ],
-  creator: 'Amlan Kumar Bhowmik',
-  publisher: 'Amlan Kumar Bhowmik',
+  authors: [{ name: 'Core Amlan', url: 'https://github.com/coreamlan-stack' }],
+  creator: 'Core Amlan',
+  publisher: 'Core Amlan',
   openGraph: {
     type: 'website',
     url: 'https://amlan-portfolio-six.vercel.app',
-    title: 'Amlan Kumar Bhowmik — Software Developer & UI/UX Designer',
+    title: 'Core Amlan - Software Developer & UI/UX Designer',
     description:
       'A design-driven software developer building elegant, maintainable digital experiences.',
   },
   twitter: {
     card: 'summary',
-    title: 'Amlan Kumar Bhowmik',
+    title: 'Core Amlan',
     description:
       'A design-driven software developer building elegant, maintainable digital experiences.',
   },

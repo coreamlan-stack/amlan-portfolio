@@ -8,7 +8,7 @@ import { SubpageNav } from '@/app/_components/subpage-nav';
 export const metadata = {
   title: 'Contact',
   description:
-    'Connect with Amlan Kumar Bhowmik about frontend development, product design and creative collaborations.',
+    'Connect with Core Amlan about frontend development, product design and creative collaborations.',
 };
 
 export default function ContactPage() {

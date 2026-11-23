@@ -1,23 +1,17 @@
-# Replacing portfolio project artwork
+# Updating project images
 
-The public portfolio intentionally ships with clearly labeled illustrative SVG covers.
-Real images can be added later without redesigning the pages.
+Project images live in `public/projects/`. Each case study in `app/_data/case-studies.js` has a `cover`, an `alt` description, and an optional `gallery` for additional screens.
 
-## Where to add screenshots
+## Adding an approved image
 
-1. Put approved images in `public/projects/`, using WebP/AVIF where possible.
-2. Edit `app/_data/case-studies.js`; each case study has a `cover` path and `alt` description.
-3. Replace the existing `cover: '/projects/<slug>.svg'` with a real image path, e.g. `'/projects/hrms-cover.webp'`.
-4. Update `alt` to describe what the screenshot actually depicts.
-5. Review and update `note` to distinguish real screens from illustrative work.
-6. Commit the change to `main`. Vercel deploys new commits.
+1. Put the image in `public/projects/`, using WebP or AVIF where practical.
+2. Update the matching case study with the new public image path and accurate alt text.
+3. For several related screens, add them to the project `gallery`.
+4. Update the project's `note` so its public context remains accurate.
+5. Run `npm run build` before publishing.
 
 ## Publishing guidance
 
-- Do not include real employee records, identifying information, internal endpoints, access credentials, unreleased plans or restricted government material.
-- Use approved, anonymized synthetic data in screenshots.
-- For a project with a confidentiality agreement, only publish images and specific information after permission is established.
-- The two independent concepts are clearly labeled as concepts, not commissioned or deployed government systems.
-- The Billing System's implementation details have intentionally been left high-level until verified.
-
-Both the gallery and detail page use the same `cover` value, so one approved cover updates both locations.
+- Do not include real employee records, identifying information, internal endpoints, credentials, unreleased plans, or restricted government material.
+- Use approved, anonymized data in screenshots.
+- Only publish images and implementation details that are appropriate to share.

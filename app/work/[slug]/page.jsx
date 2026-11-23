@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight, LockKeyhole } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -23,7 +23,6 @@ const accessLabels = {
   internal: 'Internal application work',
   independent: 'Independent application',
   'details-pending': 'Additional details pending',
-  concept: 'Independent concept',
   public: 'Public project',
 };
 
@@ -145,29 +144,36 @@ export default function CaseStudyPage({ params }) {
             </div>
           </section>
 
-          <section className='mx-auto max-w-[1440px] px-6 py-20 sm:px-12 lg:px-20'>
-            <div className='flex flex-col justify-between gap-8 border border-white/10 bg-[#151d1e] p-7 sm:flex-row sm:items-center sm:p-12'>
-              <div className='max-w-2xl'>
-                <div className='mb-4 flex items-center gap-3 text-primary'>
-                  <LockKeyhole size={18} aria-hidden='true' />
-                  <span className='text-xs uppercase tracking-[.2em]'>
+          {project.gallery && (
+            <section className='mx-auto max-w-[1440px] px-6 py-20 sm:px-12 lg:px-20'>
+              <div className='mb-10 flex items-end justify-between gap-6'>
+                <div>
+                  <p className='text-xs uppercase tracking-[.2em] text-primary'>
                     Visual documentation
-                  </span>
+                  </p>
+                  <h3 className='mt-3 text-2xl tracking-tight sm:text-3xl'>
+                    Product screens
+                  </h3>
                 </div>
-                <h3 className='text-2xl tracking-tight sm:text-3xl'>
-                  Real screenshots coming later.
-                </h3>
-                <p className='mt-4 leading-relaxed text-muted-foreground'>
-                  This is a clearly labeled placeholder. Project visuals will be
-                  added when accurate screenshots are available and appropriate
-                  to share.
-                </p>
+                <span className='text-xs uppercase tracking-[.2em] text-muted-foreground'>
+                  {String(project.gallery.length).padStart(2, '0')} images
+                </span>
               </div>
-              <span className='shrink-0 text-xs uppercase tracking-[.2em] text-muted-foreground'>
-                Image slot / 01
-              </span>
-            </div>
-          </section>
+              <div className='grid gap-6 sm:grid-cols-3'>
+                {project.gallery.map(image => (
+                  <Image
+                    key={image.src}
+                    src={image.src}
+                    alt={image.alt}
+                    width={812}
+                    height={1600}
+                    unoptimized
+                    className='w-full rounded-2xl border border-white/10 bg-[#151d1e]'
+                  />
+                ))}
+              </div>
+            </section>
+          )}
         </article>
 
         <Link

@@ -15,19 +15,27 @@ export function Project() {
   const { transformX1, transformX2, transformY } =
     useProjectSlider(containerRef);
 
-  const firstSlider = projectOptions.first.map(({ label, tone }) => (
-    <ProjectSlider key={label} label={label} tone={tone} />
+  const firstSlider = projectOptions.first.map(({ label, icon, tone }) => (
+    <ProjectSlider key={label} label={label} icon={icon} tone={tone} />
   ));
 
-  const secondSlider = projectOptions.second.map(({ label, tone }) => (
-    <ProjectSlider key={label} label={label} tone={tone} />
+  const secondSlider = projectOptions.second.map(({ label, icon, tone }) => (
+    <ProjectSlider key={label} label={label} icon={icon} tone={tone} />
   ));
 
   return (
-    <section ref={containerRef} aria-label='Technology stack' className='relative z-10 mt-14'>
+    <section
+      ref={containerRef}
+      aria-label='Technology stack'
+      className='relative z-10 mt-14'
+    >
       <div className='mx-auto max-w-[1440px] px-6 pb-10 sm:px-12 lg:px-20'>
-        <p className='text-xs uppercase tracking-[.24em] text-primary'>Tools & technologies</p>
-        <h2 className='mt-3 max-w-2xl text-2xl tracking-tight sm:text-4xl'>From interfaces to the infrastructure behind them.</h2>
+        <p className='text-xs uppercase tracking-[.24em] text-primary'>
+          Tools & technologies
+        </p>
+        <h2 className='mt-3 max-w-2xl text-2xl tracking-tight sm:text-4xl'>
+          From interfaces to the infrastructure behind them.
+        </h2>
       </div>
       <div className='grid items-center'>
         <div className='bg-background'>

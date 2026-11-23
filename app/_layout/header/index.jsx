@@ -126,18 +126,15 @@ export function Header() {
         <div className='absolute inset-x-6 top-[58%] -translate-y-1/2 md:left-0 md:right-[18%] md:top-[60%] md:h-[clamp(9rem,25vw,22rem)] md:translate-x-[-3vw]'>
           <h1
             className='text-[clamp(2.7rem,11vw,3.85rem)] font-medium leading-[0.9] tracking-[-0.055em] md:hidden'
-            aria-label='Amlan Kumar Bhowmik'
+            aria-label='Core Amlan'
           >
-            <span className='block'>Amlan Kumar</span>
-            <span className='block'>Bhowmik</span>
+            <span className='brand-wordmark block'>Core</span>
+            <span className='brand-wordmark block'>Amlan</span>
           </h1>
-          <h1
-            className='hidden h-full md:block'
-            aria-label='Amlan Kumar Bhowmik'
-          >
+          <h1 className='hidden h-full md:block' aria-label='Core Amlan'>
             <TechText
-              text='Amlan Kumar Bhowmik'
-              fontWeight={600}
+              text='CORE AMLAN'
+              fontWeight={400}
               fontSize={150}
               letterSpacing={-0.05}
               reveal='letter'
@@ -158,7 +155,7 @@ export function Header() {
           <h1 className='text-[clamp(4rem,9vw,10rem)] leading-[0.9]'>
             <ParallaxSlider repeat={4} baseVelocity={2}>
               <span className='pe-12'>
-                Amlan Kumar Bhowmik <span className='spacer'>—</span>
+                Core Amlan <span className='spacer'>—</span>
               </span>
             </ParallaxSlider>
           </h1>

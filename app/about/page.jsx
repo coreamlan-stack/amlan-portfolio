@@ -10,7 +10,7 @@ import { SubpageNav } from '@/app/_components/subpage-nav';
 export const metadata = {
   title: 'About',
   description:
-    'Amlan Kumar Bhowmik — design-led software development across frontend, UI/UX and mobile.',
+    'Core Amlan — design-led software development across frontend, UI/UX and mobile.',
 };
 
 const disciplines = [
@@ -74,9 +74,9 @@ export default function AboutPage() {
           </PageReveal>
           <div className='mt-14 flex flex-col gap-9 border-t border-white/15 pt-10 md:flex-row md:items-start md:justify-between'>
             <p className='max-w-3xl text-xl leading-relaxed -tracking-wide sm:text-3xl'>
-              I’m Amlan Kumar Bhowmik, a software developer and UI/UX designer.
-              I enjoy turning complex systems into experiences people can
-              understand, use and trust.
+              I’m Core Amlan, a software developer and UI/UX designer. I enjoy
+              turning complex systems into experiences people can understand,
+              use and trust.
             </p>
             <ArrowDownRight
               size={34}

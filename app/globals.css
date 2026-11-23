@@ -18,6 +18,14 @@
     text-rendering: optimizeLegibility;
   }
 
+  .brand-wordmark {
+    font-family: var(--font-neue-montreal), "Arial Narrow", Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.075em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
   a, button {
     outline-color: theme(colors.ring);
   }

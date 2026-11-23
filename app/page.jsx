@@ -10,9 +10,9 @@ import {
 
 /** @type {import('next').Metadata} */
 export const metadata = {
-  title: 'Amlan Kumar Bhowmik — Software Developer & UI/UX Designer',
+  title: 'Core Amlan — Software Developer & UI/UX Designer',
   description:
-    'Amlan Kumar Bhowmik is a software developer and UI/UX designer focused on elegant, maintainable digital experiences.',
+    'Core Amlan is a software developer and UI/UX designer focused on elegant, maintainable digital experiences.',
 };
 
 export default function Home() {
