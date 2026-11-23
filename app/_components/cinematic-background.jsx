@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 export function CinematicBackground({ placement = 'footer' }) {
   const videoRef = useRef(null);
   const [motionAllowed, setMotionAllowed] = useState(false);
-  const [paused, setPaused] = useState(false);
+  const [pageVisible, setPageVisible] = useState(true);
 
   useEffect(() => {
     const query = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -20,14 +20,21 @@ export function CinematicBackground({ placement = 'footer' }) {
   }, []);
 
   useEffect(() => {
+    const updateVisibility = () => setPageVisible(!document.hidden);
+    updateVisibility();
+    document.addEventListener('visibilitychange', updateVisibility);
+    return () => document.removeEventListener('visibilitychange', updateVisibility);
+  }, []);
+
+  useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    if (motionAllowed && !paused) {
+    if (motionAllowed && pageVisible) {
       video.play().catch(() => {});
     } else {
       video.pause();
     }
-  }, [motionAllowed, paused]);
+  }, [motionAllowed, pageVisible]);
 
   return (
     <div
@@ -38,7 +45,7 @@ export function CinematicBackground({ placement = 'footer' }) {
     >
       <video
         ref={videoRef}
-        autoPlay={motionAllowed && !paused}
+        autoPlay={motionAllowed && pageVisible}
         muted
         loop
         playsInline
