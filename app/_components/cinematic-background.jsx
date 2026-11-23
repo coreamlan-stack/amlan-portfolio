@@ -43,7 +43,9 @@ export function CinematicBackground({ placement = 'footer' }) {
         loop
         playsInline
         preload='metadata'
-        className='absolute inset-0 size-full object-cover object-center opacity-75'
+        className={`absolute inset-0 size-full object-cover object-center ${
+          placement === 'footer' ? 'opacity-80' : 'opacity-75'
+        }`}
       >
         <source
           media='(max-width: 768px)'
@@ -57,7 +59,7 @@ export function CinematicBackground({ placement = 'footer' }) {
         />
         <source src='/wings-v8_1080p.mp4' type='video/mp4' />
       </video>
-      <div className='absolute inset-0 bg-gradient-to-b from-black/45 via-black/65 to-black/80' />
+      <div className='absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-[#09090b]' />
     </div>
   );
 }

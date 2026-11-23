@@ -6,7 +6,7 @@ export function Project() {
   return (
     <section aria-labelledby='technology-stack' className='relative z-10 mt-20'>
       <div className='mx-auto max-w-[1440px] px-6 sm:px-12 lg:px-20'>
-        <div className='flex flex-col gap-3 border-y border-white/15 py-7 sm:flex-row sm:items-end sm:justify-between'>
+        <div className='flex flex-col gap-3 py-7 sm:flex-row sm:items-end sm:justify-between'>
           <p className='text-xs uppercase tracking-[.24em] text-primary'>
             Tools & technologies
           </p>
@@ -17,7 +17,7 @@ export function Project() {
             Interfaces, systems, and the infrastructure behind them.
           </h2>
         </div>
-        <div className='space-y-1 border-b border-white/10 py-7 sm:py-9'>
+        <div className='space-y-1 py-7 sm:py-9'>
           <LogoLoop
             logos={projectOptions.slice(0, 9)}
             speed={42}
