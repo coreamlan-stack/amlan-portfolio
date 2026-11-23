@@ -51,49 +51,64 @@ export default function WorkPage() {
 
         <section
           aria-label='Project gallery'
-          className='mx-auto grid max-w-[1440px] gap-x-10 gap-y-16 px-6 pb-28 sm:px-12 lg:grid-cols-2 lg:px-20'
+          className='mx-auto max-w-[1440px] space-y-24 px-6 pb-28 sm:px-12 lg:space-y-32 lg:px-20'
         >
-          {caseStudies.map((project, index) => (
-            <PageReveal
-              key={project.slug}
-              delay={Math.min((index % 2) * 0.08, 0.12)}
-            >
-              <Link
-                href={`/work/${project.slug}`}
-                className='group block outline-offset-8 focus-visible:outline-2 focus-visible:outline-primary'
+          {caseStudies.map((project, index) => {
+            const imageOnRight = index % 2 === 1;
+
+            return (
+              <PageReveal
+                key={project.slug}
+                delay={Math.min(index * 0.04, 0.12)}
               >
-                <div className='relative aspect-[5/4] overflow-hidden rounded-3xl border border-white/10 bg-[#182024] transition-colors duration-300 group-hover:border-primary/45 group-focus-visible:border-primary'>
-                  <FluidProjectCover
-                    src={project.cover}
-                    alt={project.alt}
-                    priority={index === 0}
-                  />
-                  <span className='absolute left-4 top-4 rounded-full border border-white/20 bg-[#121a19]/80 px-3 py-2 text-[11px] tracking-wide text-white backdrop-blur-sm sm:left-6 sm:top-6'>
-                    {accessLabels[project.access] || 'Project'}
-                  </span>
-                  <span className='absolute bottom-5 right-5 flex size-12 items-center justify-center rounded-full bg-primary text-background transition-transform duration-500 motion-safe:group-hover:rotate-45 sm:size-14'>
-                    <ArrowUpRight size={23} aria-hidden='true' />
-                  </span>
-                </div>
-                <div className='mt-6 flex items-start justify-between gap-5 transition-transform duration-300 motion-safe:group-hover:translate-x-1'>
-                  <div>
-                    <p className='mb-3 text-xs uppercase tracking-[0.18em] text-muted-foreground'>
-                      {project.eyebrow}
-                    </p>
-                    <h2 className='text-3xl tracking-[-0.045em] sm:text-5xl'>
+                <Link
+                  href={`/work/${project.slug}`}
+                  className='group grid items-center gap-8 outline-offset-8 focus-visible:outline-2 focus-visible:outline-primary lg:grid-cols-2 lg:gap-16'
+                >
+                  <div
+                    className={`relative aspect-square overflow-hidden rounded-3xl border border-white/10 bg-[#182024] transition-colors duration-300 group-hover:border-primary/45 group-focus-visible:border-primary lg:aspect-[16/10] ${
+                      imageOnRight ? 'lg:order-2' : ''
+                    }`}
+                  >
+                    <FluidProjectCover
+                      src={project.cover}
+                      alt={project.alt}
+                      priority={index === 0}
+                    />
+                    <span className='absolute left-4 top-4 rounded-full border border-white/20 bg-[#121a19]/80 px-3 py-2 text-[11px] tracking-wide text-white backdrop-blur-sm sm:left-6 sm:top-6'>
+                      {accessLabels[project.access] || 'Project'}
+                    </span>
+                    <span className='absolute bottom-5 right-5 flex size-12 items-center justify-center rounded-full bg-primary text-background transition-transform duration-500 motion-safe:group-hover:rotate-45 sm:size-14'>
+                      <ArrowUpRight size={23} aria-hidden='true' />
+                    </span>
+                  </div>
+                  <div
+                    className={`max-w-xl py-2 transition-transform duration-300 motion-safe:group-hover:translate-x-1 lg:py-8 ${
+                      imageOnRight ? 'lg:order-1 lg:justify-self-end' : ''
+                    }`}
+                  >
+                    <div className='flex items-start justify-between gap-5'>
+                      <p className='text-xs uppercase tracking-[0.18em] text-muted-foreground'>
+                        {project.eyebrow}
+                      </p>
+                      <span className='shrink-0 text-xs text-muted-foreground'>
+                        {project.year}
+                      </span>
+                    </div>
+                    <h2 className='mt-5 text-4xl tracking-[-0.045em] sm:text-6xl'>
                       {project.title}
                     </h2>
-                    <p className='mt-3 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base'>
+                    <p className='mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg'>
                       {project.summary}
                     </p>
+                    <span className='mt-8 inline-flex items-center gap-3 text-sm text-primary'>
+                      View project <ArrowUpRight size={18} aria-hidden='true' />
+                    </span>
                   </div>
-                  <span className='shrink-0 text-xs text-muted-foreground'>
-                    {project.year}
-                  </span>
-                </div>
-              </Link>
-            </PageReveal>
-          ))}
+                </Link>
+              </PageReveal>
+            );
+          })}
         </section>
 
         <aside className='mx-auto max-w-[1440px] border-t border-white/10 px-6 py-12 sm:px-12 lg:px-20'>
