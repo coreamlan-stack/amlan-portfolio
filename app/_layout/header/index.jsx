@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import { motion } from 'framer-motion';
-import { MoveDownRight } from 'lucide-react';
+import { Globe, MoveDownRight } from 'lucide-react';
 
 import { ParallaxSlider } from '@/components';
 
@@ -173,6 +173,20 @@ export function Header() {
               <span className='block'>Software Developer</span>
               <span className='block text-primary'>&amp; UI/UX Designer</span>
             </h4>
+          </div>
+        </div>
+        <div className='absolute bottom-16 left-0 z-10 rounded-r-[2rem] bg-foreground px-6 py-4 text-background shadow-[0_14px_34px_rgba(0,0,0,0.2)] md:bottom-20 md:px-8 md:py-5'>
+          <div className='flex items-center gap-5'>
+            <p className='text-base font-medium leading-[1.12] tracking-[-0.035em] md:text-lg'>
+              <span className='block'>Based in</span>
+              <span className='block'>Tripura, India</span>
+            </p>
+            <span
+              className='grid size-14 shrink-0 place-items-center rounded-full bg-background/15 text-background md:size-[4.5rem]'
+              aria-hidden='true'
+            >
+              <Globe size={30} strokeWidth={1.5} />
+            </span>
           </div>
         </div>
       </div>
