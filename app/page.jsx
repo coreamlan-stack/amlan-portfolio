@@ -7,6 +7,7 @@ import {
   Thumbnail,
   Transition,
 } from '@/layout';
+import { CinematicBackground } from './_components/cinematic-background';
 
 /** @type {import('next').Metadata} */
 export const metadata = {
@@ -18,14 +19,17 @@ export const metadata = {
 export default function Home() {
   return (
     <Transition>
-      <Navbar />
-      <Header />
-      <main>
-        <Description />
-        <Thumbnail />
-        <Project />
-      </main>
-      <Contact />
+      <CinematicBackground />
+      <div className='relative z-10 isolate'>
+        <Navbar />
+        <Header />
+        <main>
+          <Description />
+          <Thumbnail />
+          <Project />
+        </main>
+        <Contact />
+      </div>
     </Transition>
   );
 }
