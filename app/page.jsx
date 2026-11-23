@@ -7,6 +7,7 @@ import {
   Thumbnail,
   Transition,
 } from '@/layout';
+
 import { CinematicBackground } from './_components/cinematic-background';
 
 /** @type {import('next').Metadata} */
@@ -20,7 +21,7 @@ export default function Home() {
   return (
     <Transition>
       <CinematicBackground />
-      <div className='relative z-10 isolate'>
+      <div className='isolate relative z-10'>
         <Navbar />
         <Header />
         <main>
