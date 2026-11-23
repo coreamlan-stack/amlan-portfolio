@@ -42,12 +42,23 @@ export function CinematicBackground({ placement = 'footer' }) {
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) return undefined;
+
+    let cancelled = false;
     if (motionAllowed && pageVisible && inView) {
-      video.play().catch(() => {});
+      // A pending play() may settle after the tab becomes hidden or the
+      // section leaves view. Never let that stale request keep decoding.
+      const playback = video.play();
+      playback?.then(() => {
+        if (cancelled) video.pause();
+      }).catch(() => {});
     } else {
       video.pause();
     }
+
+    return () => {
+      cancelled = true;
+    };
   }, [motionAllowed, pageVisible, inView]);
 
   return (
