@@ -82,14 +82,18 @@ export function Header() {
     if (!element) return undefined;
     let intersecting = true;
     const update = () => setHeroActive(intersecting && !document.hidden);
-    const observer = new IntersectionObserver(([entry]) => {
-      intersecting = entry.isIntersecting;
-      update();
-    }, { threshold: 0 });
-    observer.observe(element);
+    // Fall back to tab visibility on browsers without IntersectionObserver.
+    const observer = typeof IntersectionObserver === 'undefined'
+      ? null
+      : new IntersectionObserver(([entry]) => {
+          intersecting = entry.isIntersecting;
+          update();
+        }, { threshold: 0 });
+    observer?.observe(element);
+    update();
     document.addEventListener('visibilitychange', update);
     return () => {
-      observer.disconnect();
+      observer?.disconnect();
       document.removeEventListener('visibilitychange', update);
     };
   }, []);
