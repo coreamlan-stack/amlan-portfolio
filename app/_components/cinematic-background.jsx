@@ -9,7 +9,9 @@ import { useEffect, useRef, useState } from 'react';
 export function CinematicBackground({ placement = 'footer' }) {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
-  const [inView, setInView] = useState(true);
+  // Footer video stays paused until its first intersection is confirmed.
+  // The full-page background remains eligible to play immediately.
+  const [inView, setInView] = useState(placement === 'page');
   const [motionAllowed, setMotionAllowed] = useState(false);
   const [pageVisible, setPageVisible] = useState(true);
 
