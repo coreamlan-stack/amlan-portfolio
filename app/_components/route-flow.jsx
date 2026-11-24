@@ -22,7 +22,8 @@ export function RouteFlow({ children }) {
 
   return (
     <>
-      <AnimatePresence mode='sync' initial={false}>
+      {/* Remove exiting pages from document flow while their animation finishes. */}
+      <AnimatePresence mode='popLayout' initial={false}>
         <motion.div
           key={pathname}
           initial={reduceMotion ? false : { opacity: 0, y: 12 }}
