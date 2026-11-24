@@ -22,16 +22,17 @@ export function RouteFlow({ children }) {
 
   return (
     <>
-      <AnimatePresence mode='wait' initial={false}>
+      {/* Remove exiting pages from document flow while their animation finishes. */}
+      <AnimatePresence mode='popLayout' initial={false}>
         <motion.div
           key={pathname}
-          initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -14 }}
+          exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -8 }}
           transition={
             reduceMotion
               ? { duration: 0 }
-              : { type: 'spring', stiffness: 115, damping: 23, mass: 0.85 }
+              : { duration: 0.24, ease: [0.22, 1, 0.36, 1] }
           }
           style={{ minHeight: '100dvh' }}
         >

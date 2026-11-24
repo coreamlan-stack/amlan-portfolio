@@ -8,29 +8,71 @@ import { useEffect, useRef, useState } from 'react';
  */
 export function CinematicBackground({ placement = 'footer' }) {
   const videoRef = useRef(null);
+  const containerRef = useRef(null);
+  const playbackAllowedRef = useRef(false);
+  // Footer video stays paused until its first intersection is confirmed.
+  // The full-page background remains eligible to play immediately.
+  const [inView, setInView] = useState(placement === 'page');
   const [motionAllowed, setMotionAllowed] = useState(false);
-  const [paused, setPaused] = useState(false);
+  const [pageVisible, setPageVisible] = useState(true);
 
   useEffect(() => {
     const query = window.matchMedia('(prefers-reduced-motion: reduce)');
     const update = () => setMotionAllowed(!query.matches);
     update();
-    query.addEventListener?.('change', update);
-    return () => query.removeEventListener?.('change', update);
+    if (typeof query.addEventListener === 'function') {
+      query.addEventListener('change', update);
+      return () => query.removeEventListener('change', update);
+    }
+    // Older Safari exposes the legacy MediaQueryList listener API.
+    query.addListener?.(update);
+    return () => query.removeListener?.(update);
   }, []);
 
   useEffect(() => {
+    const updateVisibility = () => setPageVisible(!document.hidden);
+    updateVisibility();
+    document.addEventListener('visibilitychange', updateVisibility);
+    return () => document.removeEventListener('visibilitychange', updateVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (placement === 'page' || typeof IntersectionObserver === 'undefined') {
+      setInView(true);
+      return undefined;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      setInView(entry.isIntersecting);
+    }, { rootMargin: '200px' });
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [placement]);
+
+  useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
-    if (motionAllowed && !paused) {
-      video.play().catch(() => {});
+    if (!video) return undefined;
+
+    playbackAllowedRef.current = motionAllowed && pageVisible && inView;
+    if (playbackAllowedRef.current) {
+      // A pending play() may settle after the tab becomes hidden or the
+      // section leaves view. Never let that stale request keep decoding.
+      const playback = video.play();
+      playback?.then(() => {
+        if (!playbackAllowedRef.current) video.pause();
+      }).catch(() => {});
     } else {
       video.pause();
     }
-  }, [motionAllowed, paused]);
+
+    return () => {
+      playbackAllowedRef.current = false;
+      video.pause();
+    };
+  }, [motionAllowed, pageVisible, inView]);
 
   return (
     <div
+      ref={containerRef}
       aria-hidden='true'
       className={`pointer-events-none inset-0 z-0 overflow-hidden bg-[#09090b] ${
         placement === 'page' ? 'fixed' : 'absolute'
@@ -38,7 +80,6 @@ export function CinematicBackground({ placement = 'footer' }) {
     >
       <video
         ref={videoRef}
-        autoPlay={motionAllowed && !paused}
         muted
         loop
         playsInline

@@ -1,11 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Globe, MoveDownRight } from 'lucide-react';
-
-import { ParallaxSlider } from '@/components';
 
 import { slideUp } from './variants';
 import AeroShards from '../../_components/aero-shards';
@@ -24,7 +22,10 @@ function getHeroQuality() {
     cores <= 4 ||
     memory <= 4;
 
-  if (!mobile) return 'desktop';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return mobile ? 'mobile-lite' : 'desktop-reduced';
+  }
+  if (!mobile) return constrained ? 'desktop-lite' : 'desktop';
   return constrained ? 'mobile-lite' : 'mobile';
 }
 
@@ -36,6 +37,22 @@ const SCENE_QUALITY = {
     glow: 0.35,
     intro: true,
     interactive: true,
+  },
+  'desktop-reduced': {
+    count: 150,
+    dpr: 0.8,
+    speed: 0,
+    glow: 0.25,
+    intro: false,
+    interactive: false,
+  },
+  'desktop-lite': {
+    count: 250,
+    dpr: 1,
+    speed: 0.15,
+    glow: 0.25,
+    intro: false,
+    interactive: false,
   },
   mobile: {
     count: 320,
@@ -56,7 +73,31 @@ const SCENE_QUALITY = {
 };
 
 export function Header() {
+  const reduceMotion = useReducedMotion();
   const [quality, setQuality] = useState(null);
+  const [heroActive, setHeroActive] = useState(true);
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const element = heroRef.current;
+    if (!element) return undefined;
+    let intersecting = true;
+    const update = () => setHeroActive(intersecting && !document.hidden);
+    // Fall back to tab visibility on browsers without IntersectionObserver.
+    const observer = typeof IntersectionObserver === 'undefined'
+      ? null
+      : new IntersectionObserver(([entry]) => {
+          intersecting = entry.isIntersecting;
+          update();
+        }, { threshold: 0 });
+    observer?.observe(element);
+    update();
+    document.addEventListener('visibilitychange', update);
+    return () => {
+      observer?.disconnect();
+      document.removeEventListener('visibilitychange', update);
+    };
+  }, []);
 
   useEffect(() => {
     const updateQuality = () => setQuality(getHeroQuality());
@@ -77,9 +118,10 @@ export function Header() {
 
   return (
     <motion.header
-      className='relative h-screen overflow-hidden bg-background text-foreground'
+      ref={heroRef}
+      className='relative h-[100svh] min-h-[32rem] overflow-hidden bg-background text-foreground'
       variants={slideUp}
-      initial='initial'
+      initial={reduceMotion ? false : 'initial'}
       animate='enter'
     >
       {scene && (
@@ -113,7 +155,7 @@ export function Header() {
             intro={scene.intro}
             mouseStrength={scene.interactive ? 0.6 : 0}
             parallax={scene.interactive ? 0.5 : 0}
-            paused={scene.speed === 0}
+            paused={scene.speed === 0 || !heroActive}
             dpr={scene.dpr}
           />
         </div>
@@ -152,15 +194,6 @@ export function Header() {
             />
           </h1>
         </div>
-        {false && (
-          <h1 className='text-[clamp(4rem,9vw,10rem)] leading-[0.9]'>
-            <ParallaxSlider repeat={4} baseVelocity={2}>
-              <span className='pe-12'>
-                Core Amlan <span className='spacer'>—</span>
-              </span>
-            </ParallaxSlider>
-          </h1>
-        )}
         <div className='absolute inset-x-6 top-[71%] md:left-auto md:right-36 md:top-[62%] md:translate-y-28'>
           <div className='flex items-center gap-4 md:gap-6'>
             <MoveDownRight
