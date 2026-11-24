@@ -6,44 +6,70 @@ import Lenis from '@studio-freight/lenis';
 
 export function useLenis() {
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
-
-    // Keep the same scroll physics on desktop and touch.
-    const lenis = new Lenis({
-      duration: 1.15,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      syncTouch: true,
-      syncTouchLerp: 0.075,
-      touchInertiaMultiplier: 18,
-    });
-
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let lenis = null;
     let frameId = 0;
+
     const raf = time => {
+      frameId = 0;
+      if (!lenis || document.hidden) return;
       lenis.raf(time);
       frameId = requestAnimationFrame(raf);
     };
+
     const stop = () => {
       cancelAnimationFrame(frameId);
       frameId = 0;
     };
+
     const onVisibility = () => {
-      // Avoid burning frames in a background tab. On return, Lenis resumes
-      // from a fresh timestamp without reinitializing the scroll instance.
-      if (document.hidden) {
+      if (document.hidden || !lenis) {
         stop();
       } else if (!frameId) {
         frameId = requestAnimationFrame(raf);
       }
     };
 
+    const onPreference = () => {
+      if (preference.matches) {
+        stop();
+        lenis?.destroy();
+        lenis = null;
+        return;
+      }
+
+      if (!lenis) {
+        // Preserve existing scroll physics on desktop and touch.
+        lenis = new Lenis({
+          duration: 1.15,
+          easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+          syncTouch: true,
+          syncTouchLerp: 0.075,
+          touchInertiaMultiplier: 18,
+        });
+      }
+      onVisibility();
+    };
+
     document.addEventListener('visibilitychange', onVisibility);
-    if (!document.hidden) frameId = requestAnimationFrame(raf);
+    if (preference.addEventListener) {
+      preference.addEventListener('change', onPreference);
+    } else {
+      preference.addListener(onPreference);
+    }
+    onPreference();
 
     return () => {
       document.removeEventListener('visibilitychange', onVisibility);
+      if (preference.removeEventListener) {
+        preference.removeEventListener('change', onPreference);
+      } else {
+        preference.removeListener(onPreference);
+      }
       stop();
-      lenis.destroy();
+      lenis?.destroy();
+      lenis = null;
     };
   }, []);
 }
