@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 export function CinematicBackground({ placement = 'footer' }) {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
+  const playbackAllowedRef = useRef(false);
   // Footer video stays paused until its first intersection is confirmed.
   // The full-page background remains eligible to play immediately.
   const [inView, setInView] = useState(placement === 'page');
@@ -46,20 +47,21 @@ export function CinematicBackground({ placement = 'footer' }) {
     const video = videoRef.current;
     if (!video) return undefined;
 
-    let cancelled = false;
-    if (motionAllowed && pageVisible && inView) {
+    playbackAllowedRef.current = motionAllowed && pageVisible && inView;
+    if (playbackAllowedRef.current) {
       // A pending play() may settle after the tab becomes hidden or the
       // section leaves view. Never let that stale request keep decoding.
       const playback = video.play();
       playback?.then(() => {
-        if (cancelled) video.pause();
+        if (!playbackAllowedRef.current) video.pause();
       }).catch(() => {});
     } else {
       video.pause();
     }
 
     return () => {
-      cancelled = true;
+      playbackAllowedRef.current = false;
+      video.pause();
     };
   }, [motionAllowed, pageVisible, inView]);
 
