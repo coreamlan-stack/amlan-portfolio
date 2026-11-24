@@ -20,8 +20,13 @@ export function CinematicBackground({ placement = 'footer' }) {
     const query = window.matchMedia('(prefers-reduced-motion: reduce)');
     const update = () => setMotionAllowed(!query.matches);
     update();
-    query.addEventListener?.('change', update);
-    return () => query.removeEventListener?.('change', update);
+    if (typeof query.addEventListener === 'function') {
+      query.addEventListener('change', update);
+      return () => query.removeEventListener('change', update);
+    }
+    // Older Safari exposes the legacy MediaQueryList listener API.
+    query.addListener?.(update);
+    return () => query.removeListener?.(update);
   }, []);
 
   useEffect(() => {
